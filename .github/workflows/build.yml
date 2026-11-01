@@ -27,16 +27,7 @@ jobs:
         with:
           gradle-version: '8.11.1'
 
-      - name: Restore signing key
-        env:
-          KEYSTORE_B64: ${{ secrets.KEYSTORE_B64 }}
-        run: |
-          if [ -z "$KEYSTORE_B64" ]; then echo "::error::Secret KEYSTORE_B64 is missing"; exit 1; fi
-          echo "$KEYSTORE_B64" | base64 -d > app/release.jks
-
       - name: Build release APK
-        env:
-          KEYSTORE_PASS: ${{ secrets.KEYSTORE_PASS }}
         run: gradle assembleRelease --no-daemon --stacktrace
 
       - name: Name the APK

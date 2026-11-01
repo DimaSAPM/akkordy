@@ -2,6 +2,8 @@ plugins {
     id 'com.android.application'
 }
 
+def ks = new Properties()
+file('keystore.properties').withInputStream { ks.load(it) }
 def runNumber = (System.getenv('GITHUB_RUN_NUMBER') ?: '1').toInteger()
 
 android {
@@ -19,9 +21,9 @@ android {
     signingConfigs {
         release {
             storeFile file('release.jks')
-            storePassword System.getenv('KEYSTORE_PASS')
+            storePassword ks.getProperty('storePassword')
             keyAlias 'akkordy'
-            keyPassword System.getenv('KEYSTORE_PASS')
+            keyPassword ks.getProperty('storePassword')
         }
     }
 
