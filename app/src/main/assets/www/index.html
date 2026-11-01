@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0f1013">
+<title>Аккорды Rocksmith</title>
+<style>@font-face{font-family:Onest;font-style:normal;font-display:swap;font-weight:400;src:url(fonts/onest-cyrillic-400-normal.woff2) format('woff2');unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116}@font-face{font-family:Onest;font-style:normal;font-display:swap;font-weight:500;src:url(fonts/onest-cyrillic-500-normal.woff2) format('woff2');unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116}@font-face{font-family:Onest;font-style:normal;font-display:swap;font-weight:600;src:url(fonts/onest-cyrillic-600-normal.woff2) format('woff2');unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116}@font-face{font-family:Onest;font-style:normal;font-display:swap;font-weight:700;src:url(fonts/onest-cyrillic-700-normal.woff2) format('woff2');unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116}@font-face{font-family:Onest;font-style:normal;font-display:swap;font-weight:800;src:url(fonts/onest-cyrillic-800-normal.woff2) format('woff2');unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116}@font-face{font-family:Onest;font-style:normal;font-display:swap;font-weight:400;src:url(fonts/onest-latin-400-normal.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}@font-face{font-family:Onest;font-style:normal;font-display:swap;font-weight:500;src:url(fonts/onest-latin-500-normal.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}@font-face{font-family:Onest;font-style:normal;font-display:swap;font-weight:600;src:url(fonts/onest-latin-600-normal.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}@font-face{font-family:Onest;font-style:normal;font-display:swap;font-weight:700;src:url(fonts/onest-latin-700-normal.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}@font-face{font-family:Onest;font-style:normal;font-display:swap;font-weight:800;src:url(fonts/onest-latin-800-normal.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}</style>
+<style>
+:root{
+  --bg:#0f1013;--s1:#17191e;--s2:#1e2127;--s3:#282c34;--line:#2c3038;--line2:#3a3f49;
+  --tx:#eef0f3;--mut:#9aa1ad;--dim:#6b717c;--acc:#ff9f1c;--acc-ink:#1a1206;--ok:#5bd17a;--bad:#ff6b6b;
+  --r:14px;--safe-b:env(safe-area-inset-bottom,0px);--safe-t:env(safe-area-inset-top,0px);
+  --mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;background:var(--bg);color:var(--tx);font-family:Onest,system-ui,sans-serif;font-size:15px;line-height:1.35}
+button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer}
+input,textarea{font:inherit;color:inherit}
+[hidden]{display:none!important}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+
+/* header */
+header.top{position:sticky;top:0;z-index:20;background:rgba(15,16,19,.92);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--line);padding:calc(8px + var(--safe-t)) 14px 8px;display:flex;align-items:center;gap:12px}
+.brand{display:flex;align-items:center;gap:9px;font-weight:800;font-size:17px;letter-spacing:-.01em;white-space:nowrap}
+.brand svg{flex:none}
+.nav{display:flex;background:var(--s1);border:1px solid var(--line);border-radius:12px;padding:3px;gap:2px;margin-left:auto}
+.nav button{padding:7px 12px;border-radius:9px;font-weight:600;font-size:14px;color:var(--mut);white-space:nowrap}
+.nav button.on{background:var(--s3);color:var(--tx)}
+.nav .cnt{font-size:11px;background:var(--line2);border-radius:99px;padding:1px 6px;margin-left:4px;color:var(--tx)}
+.sync{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--mut);white-space:nowrap}
+.sync i{width:8px;height:8px;border-radius:50%;background:var(--dim);display:block}
+.sync.cloud i{background:var(--ok)} .sync.busy i{background:var(--acc)} .sync.err i{background:var(--bad)}
+@media (max-width:560px){.brand span{display:none}.sync b{display:none}.nav button{padding:7px 10px}}
+
+main{padding:12px 14px calc(140px + var(--safe-b));max-width:1500px;margin:0 auto}
+
+/* filters */
+.sbar{position:sticky;top:calc(56px + var(--safe-t));z-index:15;background:var(--bg);margin:0 -14px;padding:8px 14px 8px}
+.filters{padding:2px 0 6px}
+.search{position:relative}
+.search input{width:100%;background:var(--s1);border:1px solid var(--line);border-radius:12px;padding:12px 40px 12px 42px;font-size:16px;outline:none}
+.search input:focus{border-color:var(--acc)}
+.search svg{position:absolute;left:13px;top:50%;transform:translateY(-50%);color:var(--dim)}
+.search .clr{position:absolute;right:6px;top:50%;transform:translateY(-50%);width:32px;height:32px;border-radius:8px;color:var(--mut);font-size:20px}
+.row{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;padding-bottom:2px;margin-bottom:6px}
+.row::-webkit-scrollbar{display:none}
+@media (min-width:900px){.row{flex-wrap:wrap;overflow:visible}}
+.chip{flex:none;border:1px solid var(--line);background:var(--s1);color:var(--mut);border-radius:99px;padding:6px 12px;font-size:14px;font-weight:600;white-space:nowrap}
+.chip small{font-weight:500;opacity:.7;margin-left:3px;font-size:11px}
+.chip.on{background:var(--acc);border-color:var(--acc);color:var(--acc-ink)}
+.chip.on small{opacity:.8}
+.rowlbl{flex:none;align-self:center;font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--dim);padding-right:4px;width:54px}
+.resinfo{display:flex;justify-content:space-between;align-items:center;color:var(--mut);font-size:13px;margin:2px 0 10px}
+.resinfo button{color:var(--acc);font-weight:600}
+
+/* grid */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(168px,1fr));gap:10px}
+@media (min-width:700px){.grid{grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:14px}}
+.card{-webkit-touch-callout:none;position:relative;background:var(--s1);border:1.5px solid var(--line);border-radius:var(--r);overflow:hidden;cursor:pointer;transition:border-color .15s,transform .1s;user-select:none}
+.card:active{transform:scale(.985)}
+.card img{display:block;width:100%;aspect-ratio:2/1;height:auto;background:#1b1b1d}
+.card .meta{display:flex;align-items:flex-start;gap:6px;padding:8px 8px 9px 11px}
+.card .nm{font-weight:800;font-size:18px;letter-spacing:-.01em;line-height:1.1}
+.card .sub{font-size:12px;color:var(--mut);margin-top:3px;display:flex;flex-wrap:wrap;gap:4px 8px;align-items:center}
+.card .shape{font-family:var(--mono);letter-spacing:.06em}
+.tag{font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--mut);background:var(--s3);border-radius:5px;padding:2px 5px}
+.tag.fix{background:#3b2a12;color:var(--acc)}
+.card .info{margin-left:auto;flex:none;width:32px;height:32px;border-radius:9px;display:grid;place-items:center;color:var(--mut)}
+.card .info:hover{background:var(--s3)}
+.card .fav{position:absolute;top:6px;right:6px;width:30px;height:30px;border-radius:8px;display:grid;place-items:center;color:#fff;opacity:.0;background:rgba(0,0,0,.45);font-size:16px}
+.card .fav.on{opacity:1;color:var(--acc)}
+.card:hover .fav{opacity:1}
+.card.sel{border-color:var(--acc);box-shadow:0 0 0 1px var(--acc) inset}
+.card .ord{position:absolute;top:6px;left:6px;min-width:26px;height:26px;border-radius:99px;background:var(--acc);color:var(--acc-ink);font-weight:800;font-size:13px;display:none;place-items:center;padding:0 7px}
+.card.sel .ord{display:grid}
+.empty{color:var(--mut);text-align:center;padding:48px 10px}
+.foot{color:var(--dim);font-size:12.5px;margin:28px 0 0;line-height:1.55}
+.foot b{color:var(--mut);font-weight:600}
+.legend{display:inline-flex;gap:4px;vertical-align:middle;margin:0 2px}
+.legend i{width:14px;height:4px;border-radius:2px;display:block;margin-top:2px}
+
+/* tray */
+.tray{position:fixed;left:0;right:0;bottom:0;z-index:30;background:rgba(23,25,30,.96);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+  border-top:1px solid var(--line2);padding:10px 14px calc(10px + var(--safe-b));box-shadow:0 -10px 30px rgba(0,0,0,.35)}
+.tray .in{max-width:1500px;margin:0 auto}
+.tray .head{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--mut);margin-bottom:8px}
+.tray .head b{color:var(--tx);font-weight:700;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.tray .head .lnk{color:var(--mut);text-decoration:underline;text-underline-offset:3px;white-space:nowrap}
+.tray .chips{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;margin-bottom:9px}
+.tray .chips::-webkit-scrollbar{display:none}
+.tchip{flex:none;display:flex;align-items:center;gap:6px;background:var(--s3);border-radius:9px;padding:6px 6px 6px 10px;font-weight:700;font-size:14px}
+.tchip button{width:22px;height:22px;border-radius:6px;color:var(--mut);font-size:16px;line-height:1}
+.tchip button:hover{background:var(--line2);color:var(--tx)}
+.tray .acts{display:flex;gap:8px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:7px;border-radius:11px;padding:11px 16px;font-weight:700;font-size:15px;background:var(--s3);border:1px solid var(--line2);white-space:nowrap}
+.btn.pri{background:var(--acc);border-color:var(--acc);color:var(--acc-ink)}
+.btn.ghost{background:transparent}
+.btn.danger{color:var(--bad)}
+.btn.sm{padding:8px 12px;font-size:14px;border-radius:9px}
+.btn:disabled{opacity:.45}
+.tray .acts .pri{flex:1}
+
+/* sets */
+.sets-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:6px 0 12px}
+.sets-head h2{margin:0;font-size:22px;letter-spacing:-.01em}
+.setgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:12px}
+.group-h{font-size:12px;text-transform:uppercase;letter-spacing:.09em;color:var(--dim);margin:22px 0 10px;font-weight:700}
+.scard{background:var(--s1);border:1px solid var(--line);border-radius:var(--r);padding:14px;display:flex;flex-direction:column;gap:10px}
+.scard.cur{border-color:var(--acc)}
+.scard .t{display:flex;align-items:flex-start;gap:8px}
+.scard h3{margin:0;font-size:17px;font-weight:800;flex:1;word-break:break-word}
+.scard .note{color:var(--mut);font-size:13px;white-space:pre-wrap;word-break:break-word}
+.scard .mini{display:flex;flex-wrap:wrap;gap:5px}
+.scard .mini span{background:var(--s3);border-radius:7px;padding:3px 8px;font-weight:700;font-size:13px}
+.scard .row2{display:flex;gap:8px;flex-wrap:wrap}
+.kebab{width:34px;height:34px;border-radius:9px;color:var(--mut);display:grid;place-items:center;flex:none}
+.kebab:hover{background:var(--s3)}
+
+/* stage */
+.stage{position:fixed;inset:0;z-index:50;background:#0a0b0d;display:flex;flex-direction:column}
+.stage .bar{display:flex;align-items:center;gap:8px;padding:calc(8px + var(--safe-t)) 10px 8px;background:#121318;border-bottom:1px solid var(--line);overflow-x:auto;scrollbar-width:none;flex:none}
+.stage .bar::-webkit-scrollbar{display:none}
+.stage .bar .ttl{font-weight:800;font-size:16px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:34vw;margin-right:auto;padding-left:4px}
+.seg{display:flex;background:var(--s1);border:1px solid var(--line);border-radius:10px;padding:2px;flex:none}
+.seg button{min-width:32px;padding:6px 8px;border-radius:8px;font-weight:700;font-size:13px;color:var(--mut)}
+.seg button.on{background:var(--s3);color:var(--tx)}
+.tbtn{flex:none;height:36px;padding:0 11px;border-radius:10px;background:var(--s1);border:1px solid var(--line);font-weight:600;font-size:13px;color:var(--mut);display:inline-flex;align-items:center;gap:6px;white-space:nowrap}
+.tbtn.on{color:var(--acc-ink);background:var(--acc);border-color:var(--acc)}
+.stage.noui .bar{display:none}
+.board{flex:1;overflow:auto;padding:12px;display:grid;gap:var(--gap,12px);align-content:center;justify-content:center}
+.board.scroll{align-content:start}
+.tile{position:relative;width:var(--w);background:#16171b;border-radius:12px;overflow:hidden;border:1px solid #23252b}
+.tile .lbl{height:calc(var(--w) * var(--lh));display:flex;align-items:center;gap:.5em;padding:0 calc(var(--w) * .04);overflow:hidden}
+.tile .lbl .n{font-weight:800;font-size:calc(var(--w) * .085);letter-spacing:-.01em;white-space:nowrap}
+.tile .lbl .a{font-weight:600;font-size:calc(var(--w) * .045);color:var(--mut);white-space:nowrap}
+.tile .lbl .nt{margin-left:auto;font-size:calc(var(--w) * .04);color:var(--mut);white-space:nowrap}
+.tile img{display:block;width:100%;height:auto;aspect-ratio:2/1}
+.tile .ed{position:absolute;inset:0;display:none;align-items:flex-start;justify-content:flex-end;gap:6px;padding:8px;background:rgba(0,0,0,.25)}
+.stage.edit .tile .ed{display:flex}
+.tile .ed button{width:40px;height:40px;border-radius:10px;background:rgba(20,21,25,.92);border:1px solid var(--line2);font-size:18px;font-weight:700}
+.tile .ed button.x{color:var(--bad)}
+.stage .hint{position:absolute;bottom:calc(12px + var(--safe-b));left:50%;transform:translateX(-50%);background:rgba(30,33,39,.92);color:var(--mut);font-size:12.5px;padding:6px 12px;border-radius:99px;pointer-events:none;transition:opacity .4s}
+.stage .empty-st{margin:auto;color:var(--mut);text-align:center;padding:30px}
+
+/* modal */
+.modal{position:fixed;inset:0;z-index:80;background:rgba(0,0,0,.6);display:flex;align-items:center;justify-content:center;padding:16px}
+.sheet{background:var(--s2);border:1px solid var(--line2);border-radius:18px;width:min(560px,100%);max-height:calc(100vh - 32px);overflow:auto;padding:18px}
+@media (max-width:560px){.modal{align-items:flex-end;padding:0}.sheet{border-radius:18px 18px 0 0;padding-bottom:calc(18px + var(--safe-b));max-height:92vh}}
+.sheet h3{margin:0 0 4px;font-size:20px}
+.sheet .lead{color:var(--mut);font-size:14px;margin:0 0 14px}
+.sheet img{width:100%;height:auto;aspect-ratio:2/1;display:block;border-radius:12px;margin:6px 0 12px}
+.kv{display:grid;grid-template-columns:auto 1fr;gap:6px 14px;font-size:14px;margin-bottom:14px}
+.kv dt{color:var(--mut)} .kv dd{margin:0;font-weight:600}
+.kv .mono{font-family:var(--mono);letter-spacing:.08em}
+.fixnote{background:#2b2212;border:1px solid #4a3613;color:#ffd08a;border-radius:10px;padding:10px 12px;font-size:13.5px;margin-bottom:14px}
+.sheet .acts{display:flex;gap:8px;flex-wrap:wrap}
+.sheet .acts .btn{flex:1}
+.field{display:block;margin-bottom:12px}
+.field span{display:block;font-size:13px;color:var(--mut);margin-bottom:5px}
+.field input,.field textarea{width:100%;background:var(--s1);border:1px solid var(--line2);border-radius:10px;padding:11px 12px;font-size:16px;outline:none}
+.field textarea{min-height:70px;resize:vertical}
+.field input:focus,.field textarea:focus{border-color:var(--acc)}
+.setpick{display:flex;flex-direction:column;gap:6px;margin:4px 0 14px;max-height:40vh;overflow:auto}
+.setpick label{display:flex;align-items:center;gap:10px;background:var(--s1);border:1px solid var(--line);border-radius:10px;padding:10px 12px;font-weight:600}
+.setpick input{width:20px;height:20px;accent-color:var(--acc)}
+.setpick small{margin-left:auto;color:var(--dim);font-weight:500}
+.menu{display:flex;flex-direction:column;gap:6px}
+.menu .btn{justify-content:flex-start}
+
+.toast{position:fixed;left:50%;bottom:calc(150px + var(--safe-b));transform:translateX(-50%);z-index:90;background:#2b2f37;border:1px solid var(--line2);color:var(--tx);padding:10px 16px;border-radius:12px;font-size:14px;box-shadow:0 10px 30px rgba(0,0,0,.4);max-width:calc(100vw - 32px);text-align:center}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="brand">
+    <svg width="26" height="22" viewBox="0 0 26 22" aria-hidden="true"><rect x="0" y="1" width="26" height="2" rx="1" fill="#ff5a6e"/><rect x="0" y="5" width="26" height="2" rx="1" fill="#ffd21f"/><rect x="0" y="9" width="26" height="2" rx="1" fill="#3aa8ff"/><rect x="0" y="13" width="26" height="2" rx="1" fill="#ff9f1c"/><rect x="0" y="17" width="26" height="2" rx="1" fill="#5bd17a"/><rect x="0" y="21" width="26" height="1.5" rx=".75" fill="#c45bff"/></svg>
+    <span>Аккорды</span>
+  </div>
+  <nav class="nav" id="nav">
+    <button data-act="view" data-v="catalog">Каталог</button>
+    <button data-act="view" data-v="sets">Подборки<span class="cnt" id="setcnt">0</span></button>
+  </nav>
+  <div class="sync" id="sync" title=""><i></i><b id="synctx">на устройстве</b></div>
+</header>
+
+<main id="main"></main>
+
+<div class="tray" id="tray" hidden></div>
+<div class="stage" id="stage" hidden></div>
+<div class="modal" id="modal" hidden></div>
+<div class="toast" id="toast" hidden></div>
+
+<script>
+const CH = [{"id":"c-maj-open","root":"C","alt":null,"ri":0,"q":"maj","qi":0,"var":"Open","name":"C","altName":null,"frets":[null,3,2,0,1,0],"shape":"x32010","pos":1,"open":true,"notes":["C","E","G"]},{"id":"c-maj-barre","root":"C","alt":null,"ri":0,"q":"maj","qi":0,"var":"Barre","name":"C","altName":null,"frets":[null,3,5,5,5,null],"shape":"x3555x","pos":3,"open":false,"notes":["C","E","G"]},{"id":"c-m","root":"C","alt":null,"ri":0,"q":"m","qi":1,"var":null,"name":"Cm","altName":null,"frets":[null,3,5,5,4,3],"shape":"x35543","pos":3,"open":false,"notes":["C","E♭","G"]},{"id":"c-7-open","root":"C","alt":null,"ri":0,"q":"7","qi":2,"var":"Open","name":"C7","altName":null,"frets":[null,3,2,3,1,0],"shape":"x32310","pos":1,"open":true,"notes":["C","E","B♭"]},{"id":"c-7-barre","root":"C","alt":null,"ri":0,"q":"7","qi":2,"var":"Barre","name":"C7","altName":null,"frets":[null,3,5,3,5,3],"shape":"x35353","pos":3,"open":false,"notes":["C","E","G","B♭"]},{"id":"c-maj7","root":"C","alt":null,"ri":0,"q":"maj7","qi":3,"var":null,"name":"Cmaj7","altName":null,"frets":[null,3,5,4,5,3],"shape":"x35453","pos":3,"open":false,"notes":["C","E","G","B"]},{"id":"c-m7","root":"C","alt":null,"ri":0,"q":"m7","qi":4,"var":null,"name":"Cm7","altName":null,"frets":[null,3,5,3,4,3],"shape":"x35343","pos":3,"open":false,"notes":["C","E♭","G","B♭"]},{"id":"c-m7b5","root":"C","alt":null,"ri":0,"q":"m7b5","qi":5,"var":null,"name":"Cm7♭5","altName":null,"frets":[null,3,4,3,4,null],"shape":"x3434x","pos":3,"open":false,"notes":["C","E♭","G♭","B♭"]},{"id":"c-sus2","root":"C","alt":null,"ri":0,"q":"sus2","qi":6,"var":null,"name":"Csus2","altName":null,"frets":[null,3,5,5,3,3],"shape":"x35533","pos":3,"open":false,"notes":["C","D","G"]},{"id":"c-sus4","root":"C","alt":null,"ri":0,"q":"sus4","qi":7,"var":null,"name":"Csus4","altName":null,"frets":[null,3,5,5,6,null],"shape":"x3556x","pos":3,"open":false,"notes":["C","F","G"]},{"id":"c-dim7","root":"C","alt":null,"ri":0,"q":"dim7","qi":8,"var":null,"name":"Cdim7","altName":null,"frets":[null,3,4,2,4,null],"shape":"x3424x","pos":2,"open":false,"notes":["C","E♭","G♭","B𝄫"]},{"id":"c-aug","root":"C","alt":null,"ri":0,"q":"aug","qi":9,"var":null,"name":"Caug","altName":null,"frets":[null,3,null,5,5,4],"shape":"x3x554","pos":3,"open":false,"notes":["C","E","G♯"]},{"id":"c-5","root":"C","alt":null,"ri":0,"q":"5","qi":10,"var":null,"name":"C5","altName":null,"frets":[null,3,5,5,null,null],"shape":"x355xx","pos":3,"open":false,"notes":["C","G"]},{"id":"cs-maj","root":"C♯","alt":"D♭","ri":1,"q":"maj","qi":0,"var":null,"name":"C♯","altName":"D♭","frets":[null,4,6,6,6,null],"shape":"x4666x","pos":4,"open":false,"notes":["D♭","F","A♭"]},{"id":"cs-m","root":"C♯","alt":"D♭","ri":1,"q":"m","qi":1,"var":null,"name":"C♯m","altName":"D♭m","frets":[null,4,6,6,5,4],"shape":"x46654","pos":4,"open":false,"notes":["C♯","E","G♯"]},{"id":"cs-7","root":"C♯","alt":"D♭","ri":1,"q":"7","qi":2,"var":null,"name":"C♯7","altName":"D♭7","frets":[null,4,6,4,6,4],"shape":"x46464","pos":4,"open":false,"notes":["C♯","E♯","G♯","B"]},{"id":"cs-maj7","root":"C♯","alt":"D♭","ri":1,"q":"maj7","qi":3,"var":null,"name":"C♯maj7","altName":"D♭maj7","frets":[null,4,6,5,6,4],"shape":"x46564","pos":4,"open":false,"notes":["D♭","F","A♭","C"]},{"id":"cs-m7","root":"C♯","alt":"D♭","ri":1,"q":"m7","qi":4,"var":null,"name":"C♯m7","altName":"D♭m7","frets":[null,4,6,4,5,4],"shape":"x46454","pos":4,"open":false,"notes":["C♯","E","G♯","B"]},{"id":"cs-m7b5","root":"C♯","alt":"D♭","ri":1,"q":"m7b5","qi":5,"var":null,"name":"C♯m7♭5","altName":"D♭m7♭5","frets":[null,4,5,4,5,null],"shape":"x4545x","pos":4,"open":false,"notes":["C♯","E","G","B"]},{"id":"cs-sus2","root":"C♯","alt":"D♭","ri":1,"q":"sus2","qi":6,"var":null,"name":"C♯sus2","altName":"D♭sus2","frets":[null,4,6,6,4,4],"shape":"x46644","pos":4,"open":false,"notes":["C♯","D♯","G♯"]},{"id":"cs-sus4","root":"C♯","alt":"D♭","ri":1,"q":"sus4","qi":7,"var":null,"name":"C♯sus4","altName":"D♭sus4","frets":[null,4,6,6,7,null],"shape":"x4667x","pos":4,"open":false,"notes":["C♯","F♯","G♯"]},{"id":"cs-dim7","root":"C♯","alt":"D♭","ri":1,"q":"dim7","qi":8,"var":null,"name":"C♯dim7","altName":"D♭dim7","frets":[null,4,5,3,5,null],"shape":"x4535x","pos":3,"open":false,"notes":["C♯","E","G","B♭"]},{"id":"cs-aug","root":"C♯","alt":"D♭","ri":1,"q":"aug","qi":9,"var":null,"name":"C♯aug","altName":"D♭aug","frets":[null,4,null,6,6,5],"shape":"x4x665","pos":4,"open":false,"notes":["D♭","F","A"]},{"id":"cs-5","root":"C♯","alt":"D♭","ri":1,"q":"5","qi":10,"var":null,"name":"C♯5","altName":"D♭5","frets":[null,4,6,6,null,null],"shape":"x466xx","pos":4,"open":false,"notes":["C♯","G♯"]},{"id":"cs-9","root":"C♯","alt":"D♭","ri":1,"q":"9","qi":11,"var":null,"name":"C♯9","altName":"D♭9","frets":[null,4,3,4,4,4],"shape":"x43444","pos":3,"open":false,"notes":["C♯","E♯","G♯","B","D♯"]},{"id":"cs-13","root":"C♯","alt":"D♭","ri":1,"q":"13","qi":12,"var":null,"name":"C♯13","altName":"D♭13","frets":[9,null,9,10,11,null],"shape":"9x9(10)(11)x","pos":9,"open":false,"notes":["C♯","E♯","B","A♯"]},{"id":"d-maj-open","root":"D","alt":null,"ri":2,"q":"maj","qi":0,"var":"Open","name":"D","altName":null,"frets":[null,null,0,2,3,2],"shape":"xx0232","pos":2,"open":true,"notes":["D","F♯","A"]},{"id":"d-maj-barre","root":"D","alt":null,"ri":2,"q":"maj","qi":0,"var":"Barre","name":"D","altName":null,"frets":[null,5,7,7,7,null],"shape":"x5777x","pos":5,"open":false,"notes":["D","F♯","A"]},{"id":"d-m-open","root":"D","alt":null,"ri":2,"q":"m","qi":1,"var":"Open","name":"Dm","altName":null,"frets":[null,null,0,2,3,1],"shape":"xx0231","pos":1,"open":true,"notes":["D","F","A"]},{"id":"d-m-barre","root":"D","alt":null,"ri":2,"q":"m","qi":1,"var":"Barre","name":"Dm","altName":null,"frets":[null,5,7,7,6,5],"shape":"x57765","pos":5,"open":false,"notes":["D","F","A"]},{"id":"d-7-open","root":"D","alt":null,"ri":2,"q":"7","qi":2,"var":"Open","name":"D7","altName":null,"frets":[null,null,0,2,1,2],"shape":"xx0212","pos":1,"open":true,"notes":["D","F♯","A","C"]},{"id":"d-7-barre","root":"D","alt":null,"ri":2,"q":"7","qi":2,"var":"Barre","name":"D7","altName":null,"frets":[null,5,7,5,7,5],"shape":"x57575","pos":5,"open":false,"notes":["D","F♯","A","C"]},{"id":"d-maj7","root":"D","alt":null,"ri":2,"q":"maj7","qi":3,"var":null,"name":"Dmaj7","altName":null,"frets":[null,null,0,2,2,2],"shape":"xx0222","pos":2,"open":true,"notes":["D","F♯","A","C♯"]},{"id":"d-m7-open","root":"D","alt":null,"ri":2,"q":"m7","qi":4,"var":"Open","name":"Dm7","altName":null,"frets":[null,null,0,2,1,1],"shape":"xx0211","pos":1,"open":true,"notes":["D","F","A","C"]},{"id":"d-m7-barre","root":"D","alt":null,"ri":2,"q":"m7","qi":4,"var":"Barre","name":"Dm7","altName":null,"frets":[null,5,7,5,6,5],"shape":"x57565","pos":5,"open":false,"notes":["D","F","A","C"]},{"id":"d-m7b5","root":"D","alt":null,"ri":2,"q":"m7b5","qi":5,"var":null,"name":"Dm7♭5","altName":null,"frets":[null,5,6,5,6,null],"shape":"x5656x","pos":5,"open":false,"notes":["D","F","A♭","C"]},{"id":"d-sus2","root":"D","alt":null,"ri":2,"q":"sus2","qi":6,"var":null,"name":"Dsus2","altName":null,"frets":[null,null,0,2,3,0],"shape":"xx0230","pos":2,"open":true,"notes":["D","E","A"],"fix":"В книге ошибка: вместо Dsus2 нарисован DMaj7. Здесь правильная аппликатура."},{"id":"d-sus4","root":"D","alt":null,"ri":2,"q":"sus4","qi":7,"var":null,"name":"Dsus4","altName":null,"frets":[null,null,0,2,3,3],"shape":"xx0233","pos":2,"open":true,"notes":["D","G","A"]},{"id":"d-dim7","root":"D","alt":null,"ri":2,"q":"dim7","qi":8,"var":null,"name":"Ddim7","altName":null,"frets":[null,5,6,4,6,null],"shape":"x5646x","pos":4,"open":false,"notes":["D","F","A♭","C♭"]},{"id":"ds-maj","root":"D♯","alt":"E♭","ri":3,"q":"maj","qi":0,"var":null,"name":"D♯","altName":"E♭","frets":[null,6,8,8,8,null],"shape":"x6888x","pos":6,"open":false,"notes":["E♭","G","B♭"]},{"id":"ds-m","root":"D♯","alt":"E♭","ri":3,"q":"m","qi":1,"var":null,"name":"D♯m","altName":"E♭m","frets":[null,6,8,8,7,6],"shape":"x68876","pos":6,"open":false,"notes":["D♯","F♯","A♯"]},{"id":"ds-7","root":"D♯","alt":"E♭","ri":3,"q":"7","qi":2,"var":null,"name":"D♯7","altName":"E♭7","frets":[null,6,8,6,8,6],"shape":"x68686","pos":6,"open":false,"notes":["E♭","G","B♭","D♭"]},{"id":"ds-maj7","root":"D♯","alt":"E♭","ri":3,"q":"maj7","qi":3,"var":null,"name":"D♯maj7","altName":"E♭maj7","frets":[null,6,8,7,8,6],"shape":"x68786","pos":6,"open":false,"notes":["E♭","G","B♭","D"]},{"id":"ds-m7","root":"D♯","alt":"E♭","ri":3,"q":"m7","qi":4,"var":null,"name":"D♯m7","altName":"E♭m7","frets":[null,6,8,6,7,6],"shape":"x68676","pos":6,"open":false,"notes":["D♯","F♯","A♯","C♯"]},{"id":"ds-m7b5","root":"D♯","alt":"E♭","ri":3,"q":"m7b5","qi":5,"var":null,"name":"D♯m7♭5","altName":"E♭m7♭5","frets":[null,6,7,6,7,null],"shape":"x6767x","pos":6,"open":false,"notes":["D♯","F♯","A","C♯"]},{"id":"ds-sus2","root":"D♯","alt":"E♭","ri":3,"q":"sus2","qi":6,"var":null,"name":"D♯sus2","altName":"E♭sus2","frets":[null,6,8,8,6,6],"shape":"x68866","pos":6,"open":false,"notes":["E♭","F","B♭"]},{"id":"ds-sus4","root":"D♯","alt":"E♭","ri":3,"q":"sus4","qi":7,"var":null,"name":"D♯sus4","altName":"E♭sus4","frets":[null,6,8,8,9,null],"shape":"x6889x","pos":6,"open":false,"notes":["D♯","G♯","A♯"]},{"id":"ds-dim7","root":"D♯","alt":"E♭","ri":3,"q":"dim7","qi":8,"var":null,"name":"D♯dim7","altName":"E♭dim7","frets":[null,null,1,2,1,2],"shape":"xx1212","pos":1,"open":false,"notes":["D♯","F♯","A","C"]},{"id":"ds-aug","root":"D♯","alt":"E♭","ri":3,"q":"aug","qi":9,"var":null,"name":"D♯aug","altName":"E♭aug","frets":[null,6,5,4,4,null],"shape":"x6544x","pos":4,"open":false,"notes":["E♭","G","B"]},{"id":"ds-5","root":"D♯","alt":"E♭","ri":3,"q":"5","qi":10,"var":null,"name":"D♯5","altName":"E♭5","frets":[null,6,8,8,null,null],"shape":"x688xx","pos":6,"open":false,"notes":["D♯","A♯"]},{"id":"ds-9","root":"D♯","alt":"E♭","ri":3,"q":"9","qi":11,"var":null,"name":"D♯9","altName":"E♭9","frets":[null,6,5,6,6,6],"shape":"x65666","pos":5,"open":false,"notes":["E♭","G","B♭","D♭","F"]},{"id":"ds-13","root":"D♯","alt":"E♭","ri":3,"q":"13","qi":12,"var":null,"name":"D♯13","altName":"E♭13","frets":[null,6,5,6,6,8],"shape":"x65668","pos":5,"open":false,"notes":["E♭","G","D♭","F","C"]},{"id":"e-maj-open","root":"E","alt":null,"ri":4,"q":"maj","qi":0,"var":"Open","name":"E","altName":null,"frets":[0,2,2,1,0,0],"shape":"022100","pos":1,"open":true,"notes":["E","G♯","B"]},{"id":"e-maj-barre","root":"E","alt":null,"ri":4,"q":"maj","qi":0,"var":"Barre","name":"E","altName":null,"frets":[null,7,9,9,9,null],"shape":"x7999x","pos":7,"open":false,"notes":["E","G♯","B"]},{"id":"e-m-open","root":"E","alt":null,"ri":4,"q":"m","qi":1,"var":"Open","name":"Em","altName":null,"frets":[0,2,2,0,0,0],"shape":"022000","pos":2,"open":true,"notes":["E","G","B"]},{"id":"e-m-barre","root":"E","alt":null,"ri":4,"q":"m","qi":1,"var":"Barre","name":"Em","altName":null,"frets":[null,7,9,9,8,7],"shape":"x79987","pos":7,"open":false,"notes":["E","G","B"]},{"id":"e-7-open","root":"E","alt":null,"ri":4,"q":"7","qi":2,"var":"Open","name":"E7","altName":null,"frets":[0,2,0,1,0,0],"shape":"020100","pos":1,"open":true,"notes":["E","G♯","B","D"]},{"id":"e-7-barre","root":"E","alt":null,"ri":4,"q":"7","qi":2,"var":"Barre","name":"E7","altName":null,"frets":[null,7,9,7,9,7],"shape":"x79797","pos":7,"open":false,"notes":["E","G♯","B","D"]},{"id":"e-maj7","root":"E","alt":null,"ri":4,"q":"maj7","qi":3,"var":null,"name":"Emaj7","altName":null,"frets":[null,null,2,4,4,4],"shape":"xx2444","pos":2,"open":false,"notes":["E","G♯","B","D♯"]},{"id":"e-m7","root":"E","alt":null,"ri":4,"q":"m7","qi":4,"var":null,"name":"Em7","altName":null,"frets":[0,2,0,0,0,0],"shape":"020000","pos":2,"open":true,"notes":["E","G","B","D"]},{"id":"e-m7b5","root":"E","alt":null,"ri":4,"q":"m7b5","qi":5,"var":null,"name":"Em7♭5","altName":null,"frets":[null,null,2,3,3,3],"shape":"xx2333","pos":2,"open":false,"notes":["E","G","B♭","D"]},{"id":"e-sus2","root":"E","alt":null,"ri":4,"q":"sus2","qi":6,"var":null,"name":"Esus2","altName":null,"frets":[null,7,9,9,7,7],"shape":"x79977","pos":7,"open":false,"notes":["E","F♯","B"]},{"id":"e-sus4","root":"E","alt":null,"ri":4,"q":"sus4","qi":7,"var":null,"name":"Esus4","altName":null,"frets":[0,2,2,2,0,0],"shape":"022200","pos":2,"open":true,"notes":["E","A","B"]},{"id":"e-dim7","root":"E","alt":null,"ri":4,"q":"dim7","qi":8,"var":null,"name":"Edim7","altName":null,"frets":[null,null,2,3,2,3],"shape":"xx2323","pos":2,"open":false,"notes":["E","G","B♭","D♭"]},{"id":"e-aug","root":"E","alt":null,"ri":4,"q":"aug","qi":9,"var":null,"name":"Eaug","altName":null,"frets":[null,null,2,1,1,0],"shape":"xx2110","pos":1,"open":true,"notes":["E","G♯","B♯"]},{"id":"f-maj","root":"F","alt":null,"ri":5,"q":"maj","qi":0,"var":null,"name":"F","altName":null,"frets":[1,3,3,2,1,1],"shape":"133211","pos":1,"open":false,"notes":["F","A","C"]},{"id":"f-m","root":"F","alt":null,"ri":5,"q":"m","qi":1,"var":null,"name":"Fm","altName":null,"frets":[1,3,3,1,1,1],"shape":"133111","pos":1,"open":false,"notes":["F","A♭","C"]},{"id":"f-7","root":"F","alt":null,"ri":5,"q":"7","qi":2,"var":null,"name":"F7","altName":null,"frets":[1,3,1,2,1,1],"shape":"131211","pos":1,"open":false,"notes":["F","A","C","E♭"]},{"id":"f-maj7","root":"F","alt":null,"ri":5,"q":"maj7","qi":3,"var":null,"name":"Fmaj7","altName":null,"frets":[null,null,3,2,1,0],"shape":"xx3210","pos":1,"open":true,"notes":["F","A","C","E"]},{"id":"f-m7","root":"F","alt":null,"ri":5,"q":"m7","qi":4,"var":null,"name":"Fm7","altName":null,"frets":[1,3,1,1,1,1],"shape":"131111","pos":1,"open":false,"notes":["F","A♭","C","E♭"]},{"id":"f-m7b5","root":"F","alt":null,"ri":5,"q":"m7b5","qi":5,"var":null,"name":"Fm7♭5","altName":null,"frets":[null,null,3,4,4,4],"shape":"xx3444","pos":3,"open":false,"notes":["F","A♭","C♭","E♭"]},{"id":"f-sus2","root":"F","alt":null,"ri":5,"q":"sus2","qi":6,"var":null,"name":"Fsus2","altName":null,"frets":[null,null,3,0,1,1],"shape":"xx3011","pos":1,"open":true,"notes":["F","G","C"]},{"id":"f-sus4","root":"F","alt":null,"ri":5,"q":"sus4","qi":7,"var":null,"name":"Fsus4","altName":null,"frets":[null,null,3,3,1,1],"shape":"xx3311","pos":1,"open":false,"notes":["F","B♭","C"]},{"id":"f-dim7","root":"F","alt":null,"ri":5,"q":"dim7","qi":8,"var":null,"name":"Fdim7","altName":null,"frets":[null,null,3,4,3,4],"shape":"xx3434","pos":3,"open":false,"notes":["F","A♭","C♭","E𝄫"]},{"id":"f-aug","root":"F","alt":null,"ri":5,"q":"aug","qi":9,"var":null,"name":"Faug","altName":null,"frets":[null,null,3,2,2,1],"shape":"xx3221","pos":1,"open":false,"notes":["F","A","C♯"]},{"id":"f-5","root":"F","alt":null,"ri":5,"q":"5","qi":10,"var":null,"name":"F5","altName":null,"frets":[1,3,3,null,null,null],"shape":"133xxx","pos":1,"open":false,"notes":["F","C"]},{"id":"f-9","root":"F","alt":null,"ri":5,"q":"9","qi":11,"var":null,"name":"F9","altName":null,"frets":[null,8,7,8,8,8],"shape":"x87888","pos":7,"open":false,"notes":["F","A","C","E♭","G"]},{"id":"f-13","root":"F","alt":null,"ri":5,"q":"13","qi":12,"var":null,"name":"F13","altName":null,"frets":[null,8,7,8,8,10],"shape":"x8788(10)","pos":7,"open":false,"notes":["F","A","E♭","G","D"]},{"id":"fs-maj","root":"F♯","alt":"G♭","ri":6,"q":"maj","qi":0,"var":null,"name":"F♯","altName":"G♭","frets":[2,4,4,3,2,2],"shape":"244322","pos":2,"open":false,"notes":["F♯","A♯","C♯"]},{"id":"fs-m","root":"F♯","alt":"G♭","ri":6,"q":"m","qi":1,"var":null,"name":"F♯m","altName":"G♭m","frets":[2,4,4,2,2,2],"shape":"244222","pos":2,"open":false,"notes":["F♯","A","C♯"]},{"id":"fs-7","root":"F♯","alt":"G♭","ri":6,"q":"7","qi":2,"var":null,"name":"F♯7","altName":"G♭7","frets":[2,4,2,3,2,2],"shape":"242322","pos":2,"open":false,"notes":["F♯","A♯","C♯","E"]},{"id":"fs-maj7","root":"F♯","alt":"G♭","ri":6,"q":"maj7","qi":3,"var":null,"name":"F♯maj7","altName":"G♭maj7","frets":[null,null,4,6,6,6],"shape":"xx4666","pos":4,"open":false,"notes":["G♭","B♭","D♭","F"]},{"id":"fs-m7","root":"F♯","alt":"G♭","ri":6,"q":"m7","qi":4,"var":null,"name":"F♯m7","altName":"G♭m7","frets":[2,4,2,2,2,2],"shape":"242222","pos":2,"open":false,"notes":["F♯","A","C♯","E"]},{"id":"fs-m7b5","root":"F♯","alt":"G♭","ri":6,"q":"m7b5","qi":5,"var":null,"name":"F♯m7♭5","altName":"G♭m7♭5","frets":[null,null,4,5,5,5],"shape":"xx4555","pos":4,"open":false,"notes":["F♯","A","C","E"]},{"id":"fs-sus2","root":"F♯","alt":"G♭","ri":6,"q":"sus2","qi":6,"var":null,"name":"F♯sus2","altName":"G♭sus2","frets":[null,null,4,6,7,4],"shape":"xx4674","pos":4,"open":false,"notes":["F♯","G♯","C♯"]},{"id":"fs-sus4","root":"F♯","alt":"G♭","ri":6,"q":"sus4","qi":7,"var":null,"name":"F♯sus4","altName":"G♭sus4","frets":[null,null,4,4,2,2],"shape":"xx4422","pos":2,"open":false,"notes":["F♯","B","C♯"]},{"id":"fs-dim7","root":"F♯","alt":"G♭","ri":6,"q":"dim7","qi":8,"var":null,"name":"F♯dim7","altName":"G♭dim7","frets":[null,null,4,5,4,5],"shape":"xx4545","pos":4,"open":false,"notes":["F♯","A","C","E♭"]},{"id":"fs-aug","root":"F♯","alt":"G♭","ri":6,"q":"aug","qi":9,"var":null,"name":"F♯aug","altName":"G♭aug","frets":[null,null,4,3,3,2],"shape":"xx4332","pos":2,"open":false,"notes":["G♭","B♭","D"]},{"id":"fs-5","root":"F♯","alt":"G♭","ri":6,"q":"5","qi":10,"var":null,"name":"F♯5","altName":"G♭5","frets":[2,4,4,null,null,null],"shape":"244xxx","pos":2,"open":false,"notes":["F♯","C♯"]},{"id":"fs-9","root":"F♯","alt":"G♭","ri":6,"q":"9","qi":11,"var":null,"name":"F♯9","altName":"G♭9","frets":[null,null,4,3,5,4],"shape":"xx4354","pos":3,"open":false,"notes":["F♯","A♯","E","G♯"]},{"id":"fs-13","root":"F♯","alt":"G♭","ri":6,"q":"13","qi":12,"var":null,"name":"F♯13","altName":"G♭13","frets":[2,null,2,3,4,null],"shape":"2x234x","pos":2,"open":false,"notes":["F♯","A♯","E","D♯"]},{"id":"g-maj-open","root":"G","alt":null,"ri":7,"q":"maj","qi":0,"var":"Open","name":"G","altName":null,"frets":[3,2,0,0,0,3],"shape":"320003","pos":2,"open":true,"notes":["G","B","D"]},{"id":"g-maj-barre","root":"G","alt":null,"ri":7,"q":"maj","qi":0,"var":"Barre","name":"G","altName":null,"frets":[3,5,5,4,3,3],"shape":"355433","pos":3,"open":false,"notes":["G","B","D"]},{"id":"g-m","root":"G","alt":null,"ri":7,"q":"m","qi":1,"var":null,"name":"Gm","altName":null,"frets":[3,5,5,3,3,3],"shape":"355333","pos":3,"open":false,"notes":["G","B♭","D"]},{"id":"g-7-open","root":"G","alt":null,"ri":7,"q":"7","qi":2,"var":"Open","name":"G7","altName":null,"frets":[3,2,0,0,0,1],"shape":"320001","pos":1,"open":true,"notes":["G","B","D","F"]},{"id":"g-7-barre","root":"G","alt":null,"ri":7,"q":"7","qi":2,"var":"Barre","name":"G7","altName":null,"frets":[3,5,3,4,3,3],"shape":"353433","pos":3,"open":false,"notes":["G","B","D","F"]},{"id":"g-maj7","root":"G","alt":null,"ri":7,"q":"maj7","qi":3,"var":null,"name":"Gmaj7","altName":null,"frets":[3,null,4,4,3,null],"shape":"3x443x","pos":3,"open":false,"notes":["G","B","D","F♯"]},{"id":"g-m7","root":"G","alt":null,"ri":7,"q":"m7","qi":4,"var":null,"name":"Gm7","altName":null,"frets":[3,5,3,3,3,3],"shape":"353333","pos":3,"open":false,"notes":["G","B♭","D","F"]},{"id":"g-m7b5","root":"G","alt":null,"ri":7,"q":"m7b5","qi":5,"var":null,"name":"Gm7♭5","altName":null,"frets":[null,null,5,6,6,6],"shape":"xx5666","pos":5,"open":false,"notes":["G","B♭","D♭","F"]},{"id":"g-sus2","root":"G","alt":null,"ri":7,"q":"sus2","qi":6,"var":null,"name":"Gsus2","altName":null,"frets":[null,null,5,7,8,5],"shape":"xx5785","pos":5,"open":false,"notes":["G","A","D"]},{"id":"g-sus4","root":"G","alt":null,"ri":7,"q":"sus4","qi":7,"var":null,"name":"Gsus4","altName":null,"frets":[null,null,5,5,3,3],"shape":"xx5533","pos":3,"open":false,"notes":["G","C","D"]},{"id":"g-dim7","root":"G","alt":null,"ri":7,"q":"dim7","qi":8,"var":null,"name":"Gdim7","altName":null,"frets":[null,null,5,6,5,6],"shape":"xx5656","pos":5,"open":false,"notes":["G","B♭","D♭","F♭"]},{"id":"g-aug","root":"G","alt":null,"ri":7,"q":"aug","qi":9,"var":null,"name":"Gaug","altName":null,"frets":[null,null,5,4,4,3],"shape":"xx5443","pos":3,"open":false,"notes":["G","B","D♯"]},{"id":"g-5","root":"G","alt":null,"ri":7,"q":"5","qi":10,"var":null,"name":"G5","altName":null,"frets":[3,5,5,null,null,null],"shape":"355xxx","pos":3,"open":false,"notes":["G","D"]},{"id":"gs-maj","root":"G♯","alt":"A♭","ri":8,"q":"maj","qi":0,"var":null,"name":"G♯","altName":"A♭","frets":[4,6,6,5,4,4],"shape":"466544","pos":4,"open":false,"notes":["A♭","C","E♭"]},{"id":"gs-m","root":"G♯","alt":"A♭","ri":8,"q":"m","qi":1,"var":null,"name":"G♯m","altName":"A♭m","frets":[4,6,6,4,4,4],"shape":"466444","pos":4,"open":false,"notes":["G♯","B","D♯"]},{"id":"gs-7","root":"G♯","alt":"A♭","ri":8,"q":"7","qi":2,"var":null,"name":"G♯7","altName":"A♭7","frets":[4,6,4,5,4,4],"shape":"464544","pos":4,"open":false,"notes":["A♭","C","E♭","G♭"]},{"id":"gs-maj7","root":"G♯","alt":"A♭","ri":8,"q":"maj7","qi":3,"var":null,"name":"G♯maj7","altName":"A♭maj7","frets":[4,null,5,5,4,null],"shape":"4x554x","pos":4,"open":false,"notes":["A♭","C","E♭","G"]},{"id":"gs-m7","root":"G♯","alt":"A♭","ri":8,"q":"m7","qi":4,"var":null,"name":"G♯m7","altName":"A♭m7","frets":[4,6,4,4,4,4],"shape":"464444","pos":4,"open":false,"notes":["G♯","B","D♯","F♯"]},{"id":"gs-m7b5","root":"G♯","alt":"A♭","ri":8,"q":"m7b5","qi":5,"var":null,"name":"G♯m7♭5","altName":"A♭m7♭5","frets":[null,null,6,7,7,7],"shape":"xx6777","pos":6,"open":false,"notes":["G♯","B","D","F♯"]},{"id":"gs-sus2","root":"G♯","alt":"A♭","ri":8,"q":"sus2","qi":6,"var":null,"name":"G♯sus2","altName":"A♭sus2","frets":[null,null,6,8,9,6],"shape":"xx6896","pos":6,"open":false,"notes":["G♯","A♯","D♯"]},{"id":"gs-sus4","root":"G♯","alt":"A♭","ri":8,"q":"sus4","qi":7,"var":null,"name":"G♯sus4","altName":"A♭sus4","frets":[null,null,6,6,4,4],"shape":"xx6644","pos":4,"open":false,"notes":["G♯","C♯","D♯"]},{"id":"gs-dim7","root":"G♯","alt":"A♭","ri":8,"q":"dim7","qi":8,"var":null,"name":"G♯dim7","altName":"A♭dim7","frets":[null,null,6,7,6,7],"shape":"xx6767","pos":6,"open":false,"notes":["G♯","B","D","F"]},{"id":"gs-aug","root":"G♯","alt":"A♭","ri":8,"q":"aug","qi":9,"var":null,"name":"G♯aug","altName":"A♭aug","frets":[null,null,6,5,5,4],"shape":"xx6554","pos":4,"open":false,"notes":["A♭","C","E"]},{"id":"gs-5","root":"G♯","alt":"A♭","ri":8,"q":"5","qi":10,"var":null,"name":"G♯5","altName":"A♭5","frets":[4,6,6,null,null,null],"shape":"466xxx","pos":4,"open":false,"notes":["G♯","D♯"]},{"id":"gs-9","root":"G♯","alt":"A♭","ri":8,"q":"9","qi":11,"var":null,"name":"G♯9","altName":"A♭9","frets":[null,null,6,5,7,6],"shape":"xx6576","pos":5,"open":false,"notes":["A♭","C","G♭","B♭"]},{"id":"gs-13","root":"G♯","alt":"A♭","ri":8,"q":"13","qi":12,"var":null,"name":"G♯13","altName":"A♭13","frets":[4,null,4,5,6,null],"shape":"4x456x","pos":4,"open":false,"notes":["A♭","C","G♭","F"]},{"id":"a-maj-open","root":"A","alt":null,"ri":9,"q":"maj","qi":0,"var":"Open","name":"A","altName":null,"frets":[null,0,2,2,2,0],"shape":"x02220","pos":2,"open":true,"notes":["A","C♯","E"]},{"id":"a-maj-barre","root":"A","alt":null,"ri":9,"q":"maj","qi":0,"var":"Barre","name":"A","altName":null,"frets":[5,7,7,6,5,5],"shape":"577655","pos":5,"open":false,"notes":["A","C♯","E"]},{"id":"a-m-open","root":"A","alt":null,"ri":9,"q":"m","qi":1,"var":"Open","name":"Am","altName":null,"frets":[null,0,2,2,1,0],"shape":"x02210","pos":1,"open":true,"notes":["A","C","E"]},{"id":"a-m-barre","root":"A","alt":null,"ri":9,"q":"m","qi":1,"var":"Barre","name":"Am","altName":null,"frets":[5,7,7,5,5,5],"shape":"577555","pos":5,"open":false,"notes":["A","C","E"]},{"id":"a-7-open","root":"A","alt":null,"ri":9,"q":"7","qi":2,"var":"Open","name":"A7","altName":null,"frets":[null,0,2,0,2,0],"shape":"x02020","pos":2,"open":true,"notes":["A","C♯","E","G"]},{"id":"a-7-barre","root":"A","alt":null,"ri":9,"q":"7","qi":2,"var":"Barre","name":"A7","altName":null,"frets":[5,7,5,6,5,5],"shape":"575655","pos":5,"open":false,"notes":["A","C♯","E","G"]},{"id":"a-maj7","root":"A","alt":null,"ri":9,"q":"maj7","qi":3,"var":null,"name":"Amaj7","altName":null,"frets":[null,0,2,1,2,0],"shape":"x02120","pos":1,"open":true,"notes":["A","C♯","E","G♯"]},{"id":"a-m7","root":"A","alt":null,"ri":9,"q":"m7","qi":4,"var":null,"name":"Am7","altName":null,"frets":[null,0,2,0,1,0],"shape":"x02010","pos":1,"open":true,"notes":["A","C","E","G"]},{"id":"a-m7b5","root":"A","alt":null,"ri":9,"q":"m7b5","qi":5,"var":null,"name":"Am7♭5","altName":null,"frets":[null,0,1,0,1,null],"shape":"x0101x","pos":1,"open":true,"notes":["A","C","E♭","G"]},{"id":"a-sus2","root":"A","alt":null,"ri":9,"q":"sus2","qi":6,"var":null,"name":"Asus2","altName":null,"frets":[null,0,2,2,0,0],"shape":"x02200","pos":2,"open":true,"notes":["A","B","E"]},{"id":"a-sus4","root":"A","alt":null,"ri":9,"q":"sus4","qi":7,"var":null,"name":"Asus4","altName":null,"frets":[null,0,2,2,3,0],"shape":"x02230","pos":2,"open":true,"notes":["A","D","E"]},{"id":"a-dim7","root":"A","alt":null,"ri":9,"q":"dim7","qi":8,"var":null,"name":"Adim7","altName":null,"frets":[null,0,1,2,1,2],"shape":"x01212","pos":1,"open":true,"notes":["A","C","E♭","G♭"]},{"id":"a-aug","root":"A","alt":null,"ri":9,"q":"aug","qi":9,"var":null,"name":"Aaug","altName":null,"frets":[null,0,null,2,2,1],"shape":"x0x221","pos":1,"open":true,"notes":["A","C♯","E♯"]},{"id":"as-maj","root":"A♯","alt":"B♭","ri":10,"q":"maj","qi":0,"var":null,"name":"A♯","altName":"B♭","frets":[null,1,3,3,3,null],"shape":"x1333x","pos":1,"open":false,"notes":["B♭","D","F"]},{"id":"as-m","root":"A♯","alt":"B♭","ri":10,"q":"m","qi":1,"var":null,"name":"A♯m","altName":"B♭m","frets":[null,1,3,3,2,1],"shape":"x13321","pos":1,"open":false,"notes":["B♭","D♭","F"]},{"id":"as-7","root":"A♯","alt":"B♭","ri":10,"q":"7","qi":2,"var":null,"name":"A♯7","altName":"B♭7","frets":[null,1,3,1,3,1],"shape":"x13131","pos":1,"open":false,"notes":["B♭","D","F","A♭"]},{"id":"as-maj7","root":"A♯","alt":"B♭","ri":10,"q":"maj7","qi":3,"var":null,"name":"A♯maj7","altName":"B♭maj7","frets":[null,1,3,2,3,1],"shape":"x13231","pos":1,"open":false,"notes":["B♭","D","F","A"]},{"id":"as-m7","root":"A♯","alt":"B♭","ri":10,"q":"m7","qi":4,"var":null,"name":"A♯m7","altName":"B♭m7","frets":[null,1,3,1,2,1],"shape":"x13121","pos":1,"open":false,"notes":["B♭","D♭","F","A♭"]},{"id":"as-m7b5","root":"A♯","alt":"B♭","ri":10,"q":"m7b5","qi":5,"var":null,"name":"A♯m7♭5","altName":"B♭m7♭5","frets":[null,1,2,1,2,null],"shape":"x1212x","pos":1,"open":false,"notes":["A♯","C♯","E","G♯"]},{"id":"as-sus2","root":"A♯","alt":"B♭","ri":10,"q":"sus2","qi":6,"var":null,"name":"A♯sus2","altName":"B♭sus2","frets":[null,1,3,3,1,1],"shape":"x13311","pos":1,"open":false,"notes":["B♭","C","F"],"fix":"В книге этого аккорда нет (на его месте повтор Am7♭5). Добавлен по форме Bsus2, на лад ниже."},{"id":"as-sus4","root":"A♯","alt":"B♭","ri":10,"q":"sus4","qi":7,"var":null,"name":"A♯sus4","altName":"B♭sus4","frets":[null,1,3,3,4,null],"shape":"x1334x","pos":1,"open":false,"notes":["B♭","E♭","F"]},{"id":"as-dim7","root":"A♯","alt":"B♭","ri":10,"q":"dim7","qi":8,"var":null,"name":"A♯dim7","altName":"B♭dim7","frets":[null,1,2,0,2,null],"shape":"x1202x","pos":1,"open":true,"notes":["A♯","C♯","E","G"]},{"id":"as-aug","root":"A♯","alt":"B♭","ri":10,"q":"aug","qi":9,"var":null,"name":"A♯aug","altName":"B♭aug","frets":[null,1,null,3,3,2],"shape":"x1x332","pos":1,"open":false,"notes":["B♭","D","F♯"]},{"id":"as-5","root":"A♯","alt":"B♭","ri":10,"q":"5","qi":10,"var":null,"name":"A♯5","altName":"B♭5","frets":[null,1,3,3,null,null],"shape":"x133xx","pos":1,"open":false,"notes":["B♭","F"]},{"id":"as-9","root":"A♯","alt":"B♭","ri":10,"q":"9","qi":11,"var":null,"name":"A♯9","altName":"B♭9","frets":[null,null,8,7,9,8],"shape":"xx8798","pos":7,"open":false,"notes":["B♭","D","A♭","C"]},{"id":"as-13","root":"A♯","alt":"B♭","ri":10,"q":"13","qi":12,"var":null,"name":"A♯13","altName":"B♭13","frets":[6,null,6,7,8,null],"shape":"6x678x","pos":6,"open":false,"notes":["B♭","D","A♭","G"]},{"id":"b-maj","root":"B","alt":null,"ri":11,"q":"maj","qi":0,"var":null,"name":"B","altName":null,"frets":[null,2,4,4,4,null],"shape":"x2444x","pos":2,"open":false,"notes":["B","D♯","F♯"]},{"id":"b-m","root":"B","alt":null,"ri":11,"q":"m","qi":1,"var":null,"name":"Bm","altName":null,"frets":[null,2,4,4,3,2],"shape":"x24432","pos":2,"open":false,"notes":["B","D","F♯"]},{"id":"b-7-open","root":"B","alt":null,"ri":11,"q":"7","qi":2,"var":"Open","name":"B7","altName":null,"frets":[null,2,1,2,0,2],"shape":"x21202","pos":1,"open":true,"notes":["B","D♯","F♯","A"]},{"id":"b-7-barre","root":"B","alt":null,"ri":11,"q":"7","qi":2,"var":"Barre","name":"B7","altName":null,"frets":[null,2,4,2,4,2],"shape":"x24242","pos":2,"open":false,"notes":["B","D♯","F♯","A"]},{"id":"b-maj7","root":"B","alt":null,"ri":11,"q":"maj7","qi":3,"var":null,"name":"Bmaj7","altName":null,"frets":[null,2,4,3,4,2],"shape":"x24342","pos":2,"open":false,"notes":["B","D♯","F♯","A♯"]},{"id":"b-m7","root":"B","alt":null,"ri":11,"q":"m7","qi":4,"var":null,"name":"Bm7","altName":null,"frets":[null,2,4,2,3,2],"shape":"x24232","pos":2,"open":false,"notes":["B","D","F♯","A"]},{"id":"b-m7b5","root":"B","alt":null,"ri":11,"q":"m7b5","qi":5,"var":null,"name":"Bm7♭5","altName":null,"frets":[null,2,3,2,3,null],"shape":"x2323x","pos":2,"open":false,"notes":["B","D","F","A"]},{"id":"b-sus2","root":"B","alt":null,"ri":11,"q":"sus2","qi":6,"var":null,"name":"Bsus2","altName":null,"frets":[null,2,4,4,2,2],"shape":"x24422","pos":2,"open":false,"notes":["B","C♯","F♯"]},{"id":"b-sus4","root":"B","alt":null,"ri":11,"q":"sus4","qi":7,"var":null,"name":"Bsus4","altName":null,"frets":[null,2,4,4,5,null],"shape":"x2445x","pos":2,"open":false,"notes":["B","E","F♯"]},{"id":"b-dim7","root":"B","alt":null,"ri":11,"q":"dim7","qi":8,"var":null,"name":"Bdim7","altName":null,"frets":[null,2,3,1,3,null],"shape":"x2313x","pos":1,"open":false,"notes":["B","D","F","A♭"]},{"id":"b-aug","root":"B","alt":null,"ri":11,"q":"aug","qi":9,"var":null,"name":"Baug","altName":null,"frets":[null,2,null,4,4,3],"shape":"x2x443","pos":2,"open":false,"notes":["B","D♯","F𝄪"]},{"id":"b-5","root":"B","alt":null,"ri":11,"q":"5","qi":10,"var":null,"name":"B5","altName":null,"frets":[null,2,4,4,null,null],"shape":"x244xx","pos":2,"open":false,"notes":["B","F♯"]},{"id":"b-9","root":"B","alt":null,"ri":11,"q":"9","qi":11,"var":null,"name":"B9","altName":null,"frets":[null,2,1,2,2,2],"shape":"x21222","pos":1,"open":false,"notes":["B","D♯","F♯","A","C♯"]}];
+const BY = Object.fromEntries(CH.map((c,i)=>[c.id,Object.assign(c,{idx:i})]));
+const ROOTS=['C','C♯','D','D♯','E','F','F♯','G','G♯','A','A♯','B'];
+const FLAT={'C♯':'D♭','D♯':'E♭','F♯':'G♭','G♯':'A♭','A♯':'B♭'};
+const QUAL=[['maj','Мажор'],['m','Минор'],['7','7'],['maj7','maj7'],['m7','m7'],['m7b5','m7♭5'],['sus2','sus2'],['sus4','sus4'],['dim7','dim7'],['aug','aug'],['5','5'],['9','9'],['13','13']];
+const QDESC={maj:'мажорное трезвучие',m:'минорное трезвучие','7':'доминантсептаккорд',maj7:'большой мажорный септаккорд',m7:'малый минорный септаккорд',m7b5:'полууменьшённый септаккорд',sus2:'с задержанием (2-я ступень вместо терции)',sus4:'с задержанием (4-я ступень вместо терции)',dim7:'уменьшённый септаккорд',aug:'увеличенное трезвучие','5':'квинта, пауэр-аккорд','9':'доминантовый нонаккорд','13':'доминантовый аккорд с терцдецимой'};
+const QALIAS={maj:['','maj','major','мажор','dur'],m:['m','min','minor','-','mi','минор','moll'],'7':['7','dom7','dom'],maj7:['maj7','ma7','major7','δ','δ7','j7'],m7:['m7','min7','mi7','-7'],m7b5:['m7b5','m7-5','m7(b5)','ø','ø7','min7b5','halfdim','-7b5'],sus2:['sus2'],sus4:['sus4','sus'],dim7:['dim7','dim','°','°7','o7'],aug:['aug','+','+5','#5'],'5':['5','power','пауэр'],'9':['9','dom9'],'13':['13','dom13']};
+const LETTER={c:0,d:2,e:4,f:5,g:7,a:9,b:11};
+const RU='йцукенгшщзхъфывапролджэячсмитьбюёіїє', EN="qwertyuiop[]asdfghjkl;'zxcvbnm,.`s]'";
+const LS='chordbook.v1';
+const NATIVE=window.Native||null;
+let fsOn=false;
+const $=s=>document.querySelector(s);
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const uidGen=()=>(crypto.randomUUID?crypto.randomUUID():Date.now().toString(36)+Math.random().toString(36).slice(2)).replace(/[^a-z0-9-]/gi,'');
+
+/* ---------- state ---------- */
+const S={view:'catalog',q:'',root:null,qual:null,pos:'all',fav:false,board:[],boardSet:null,setGroup:null,
+  stage:{open:false,cols:'auto',notes:false,edit:false,ui:true}};
+let lib={v:1,updated:0,favs:[],sets:[]};
+
+function loadLocal(){
+  try{
+    const d=JSON.parse(localStorage.getItem(LS)||'null'); if(!d) return;
+    if(d.lib&&Array.isArray(d.lib.sets)) lib=sanitizeLib(d.lib);
+    if(Array.isArray(d.board)) S.board=d.board.filter(id=>BY[id]);
+    S.boardSet=d.boardSet||null;
+    if(d.stage){S.stage.cols=d.stage.cols??'auto';S.stage.notes=!!d.stage.notes}
+  }catch(e){}
+}
+function saveLocal(){
+  try{localStorage.setItem(LS,JSON.stringify({lib,board:S.board,boardSet:S.boardSet,stage:{cols:S.stage.cols,notes:S.stage.notes}}))}catch(e){}
+}
+function sanitizeLib(x){
+  return {v:1,updated:+x.updated||0,
+    favs:(Array.isArray(x.favs)?x.favs:[]).filter(id=>BY[id]),
+    sets:(Array.isArray(x.sets)?x.sets:[]).filter(s=>s&&s.id).map(s=>({id:String(s.id),name:String(s.name||'Без названия'),group:String(s.group||''),note:String(s.note||''),chords:(Array.isArray(s.chords)?s.chords:[]).filter(id=>BY[id]),updated:+s.updated||0}))};
+}
+function touchLib(){lib.updated=Date.now();saveLocal();scheduleWrite();}
+
+/* ---------- cloud sync (per-person, private) ---------- */
+let db=null,libRef=null,syncMode='local',writing=false,dirty=false,wTimer=null,firstTimer=null;
+function setSync(mode){
+  syncMode=mode;const el=$('#sync');el.className='sync '+({cloud:'cloud',busy:'busy',err:'err'}[mode]||'');
+  const t={local:'на устройстве',cloud:'синхронизировано',busy:'сохраняю…',err:'нет связи'}[mode];
+  $('#synctx').textContent=t;
+  el.title={local:'Подборки и избранное хранятся только в этом браузере',cloud:'Подборки и избранное сохраняются в вашем аккаунте и видны на телефоне и планшете',busy:'Сохраняю изменения',err:'Облако пока недоступно, изменения сохранены на устройстве'}[mode];
+}
+function scheduleWrite(){
+  if(!libRef) return; dirty=true; clearTimeout(wTimer); wTimer=setTimeout(flush,700);
+}
+async function flush(){
+  if(!libRef||writing||!dirty) return;
+  writing=true;dirty=false;setSync('busy');
+  const body={v:1,updated:lib.updated,favs:lib.favs.slice(),sets:lib.sets.map(s=>({...s,chords:s.chords.slice()}))};
+  try{await libRef.set(body);setSync('cloud')}
+  catch(e){
+    const code=e&&e.code;
+    if(code==='unavailable'){dirty=true;setTimeout(flush,1500+Math.random()*1500);setSync('err')}
+    else if(code==='quota_exceeded'){setSync('err');toast('Облако переполнено, изменения сохранены только на этом устройстве')}
+    else {libRef=null;setSync('local')}
+  }
+  writing=false; if(dirty&&libRef) scheduleWrite();
+}
+async function initCloud(){
+  if(!window.claude||!claude.use) return;
+  try{
+    const [d,u]=await Promise.all([claude.use('db'),claude.use('user')]);
+    if(!d||!u) return;
+    const id=await u.id(); if(!id) return;
+    db=d; libRef=db.doc('data/users/'+id+'/library');
+    firstTimer=setTimeout(()=>{if(syncMode!=='cloud')setSync('err')},10000);
+    libRef.onSnapshot(snap=>{
+      if(snap.metadata&&snap.metadata.hasPendingWrites) return;
+      const fromCache=snap.metadata&&snap.metadata.fromCache;
+      if(!fromCache){clearTimeout(firstTimer);if(syncMode!=='busy')setSync('cloud')}
+      if(snap.exists){
+        const remote=sanitizeLib(snap.data()||{});
+        if(remote.updated>lib.updated){
+          lib=remote;
+          if(S.boardSet){const s=lib.sets.find(x=>x.id===S.boardSet); if(s) S.board=s.chords.slice(); else S.boardSet=null;}
+          saveLocal();renderAll();
+        } else if(remote.updated<lib.updated && !fromCache){dirty=true;scheduleWrite()}
+      } else if(!fromCache && (lib.sets.length||lib.favs.length)){dirty=true;scheduleWrite()}
+    },err=>{clearTimeout(firstTimer);libRef=null;setSync(err&&err.code==='unavailable'?'err':'local')});
+  }catch(e){}
+}
+
+/* ---------- search ---------- */
+function norm(s){
+  return s.replace(/([A-Ga-g][#b♯♭]?)M(?=$|7|aj|a)/g,'$1maj').replace(/Δ/g,'maj7')
+    .toLowerCase().replace(/♯/g,'#').replace(/♭/g,'b').replace(/№/g,'#').replace(/\s+/g,'');
+}
+function layout(s){let o='';for(const ch of s){const i=RU.indexOf(ch);o+=i>=0?EN[i]:ch}return o}
+function rankFor(q){
+  // returns Map id->rank (lower = better) for a normalized query
+  const out=new Map();
+  let vf=null;
+  q=q.replace(/(open|откр\w*)/,()=>{vf='open';return''}).replace(/(barre|барр?[еэ]?\w*)/,()=>{vf='barre';return''});
+  const okVar=c=>!vf||(vf==='open'?(c.var?c.var==='Open':c.open):(c.var?c.var==='Barre':!c.open));
+  if(!q){ if(vf) CH.forEach(c=>okVar(c)&&out.set(c.id,1)); return out; }
+  if(/^[x\d()]{3,}$/.test(q)&&/[x\d]{3}/.test(q)){
+    CH.forEach(c=>{const sh=c.shape.toLowerCase(); if(sh.startsWith(q)) out.set(c.id,sh===q?0:1)}); return out;
+  }
+  const qmatch=(rest,qk)=>{let best=null;for(const a of QALIAS[qk]){
+      if(rest==='m'&&a.startsWith('ma')) continue;
+      if(a===rest){best=0;break} if(a.startsWith(rest)){const r=1+a.length*.01; if(best===null||r<best)best=r}}
+    return best};
+  const m=q.match(/^([a-g])(#|b)?(.*)$/);
+  if(m){
+    const pc=(LETTER[m[1]]+(m[2]==='#'?1:m[2]==='b'?-1:0)+12)%12;
+    CH.forEach(c=>{if(c.ri!==pc||!okVar(c))return;const r=qmatch(m[3],c.q);if(r!==null)out.set(c.id,r)});
+  }
+  if(!out.size){
+    CH.forEach(c=>{if(!okVar(c))return;let best=null;for(const a of QALIAS[c.q]){if(!a)continue;if(a===q){best=0;break}if(a.startsWith(q)){const r=1+a.length*.01;if(best===null||r<best)best=r}}if(best!==null)out.set(c.id,best+2)});
+  }
+  return out;
+}
+function search(raw){
+  const a=norm(raw.trim()); if(!a) return null;
+  const r1=rankFor(a), b=layout(a), r2=b!==a?rankFor(b):new Map();
+  for(const [k,v] of r2) if(!r1.has(k)||v<r1.get(k)) r1.set(k,v);
+  return r1;
+}
+
+/* ---------- catalog ---------- */
+function filtered(){
+  const ranks=search(S.q);
+  let list=CH.filter(c=>{
+    if(ranks&&!ranks.has(c.id)) return false;
+    if(S.root!==null&&c.ri!==S.root) return false;
+    if(S.qual&&c.q!==S.qual) return false;
+    if(S.pos==='open'&&!c.open) return false;
+    if(S.pos==='closed'&&c.open) return false;
+    if(S.fav&&!lib.favs.includes(c.id)) return false;
+    return true;
+  });
+  if(ranks) list.sort((a,b)=>(ranks.get(a.id)-ranks.get(b.id))||a.idx-b.idx);
+  return list;
+}
+function chordTags(c){
+  let t='';
+  if(c.var) t+=`<span class="tag">${c.var==='Open'?'открытый':'баррэ'}</span>`;
+  else if(!c.open) t+=`<span class="tag">${c.pos} лад</span>`;
+  if(c.fix) t+=`<span class="tag fix">исправлен</span>`;
+  return t;
+}
+function cardHTML(c){
+  const sel=S.board.indexOf(c.id), fav=lib.favs.includes(c.id);
+  return `<div class="card${sel>=0?' sel':''}" data-act="toggle" data-id="${c.id}" role="button" aria-pressed="${sel>=0}" aria-label="${esc(c.name)}">
+    <img src="c/${c.id}.webp" width="520" height="260" loading="lazy" decoding="async" alt="">
+    <span class="ord">${sel>=0?sel+1:''}</span>
+    <button class="fav${fav?' on':''}" data-act="fav" data-id="${c.id}" aria-label="Избранное">${fav?'★':'☆'}</button>
+    <div class="meta"><div style="min-width:0">
+      <div class="nm">${esc(c.name)}</div>
+      <div class="sub">${c.altName?`<span>${esc(c.altName)}</span>`:''}<span class="shape">${esc(c.shape)}</span>${chordTags(c)}</div>
+    </div>
+    <button class="info" data-act="info" data-id="${c.id}" aria-label="Подробнее"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5v.5"/></svg></button></div>
+  </div>`;
+}
+function renderCatalog(){
+  const m=$('#main');
+  if(!m.querySelector('.sbar')){
+    m.innerHTML=`<div class="sbar"><div class="search"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        <input id="q" type="search" inputmode="search" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="Поиск: Am, F#m7, Bb, sus4, x02210">
+        <button class="clr" data-act="clearq" aria-label="Очистить" hidden>×</button></div></div>
+    <div class="filters"><div class="row" id="rootrow"></div><div class="row" id="qualrow"></div><div class="row" id="posrow"></div>
+    </div><div class="resinfo" id="resinfo"></div><div class="grid" id="grid"></div>
+    <p class="foot"><b>Как читать схему.</b> Как в Rocksmith: сверху красная струна (6-я, низкая E), снизу фиолетовая (1-я, высокая e)
+      <span class="legend"><i style="background:#ff5a6e"></i><i style="background:#ffd21f"></i><i style="background:#3aa8ff"></i><i style="background:#ff9f1c"></i><i style="background:#5bd17a"></i><i style="background:#c45bff"></i></span>.
+      Кружок означает открытую струну, крестик означает, что струна не звучит. Цифры на нотах — пальцы, внизу — номера ладов. Подпись вида x02210 — та же аппликатура записью от 6-й струны к 1-й.<br><br>
+      <b>Источник.</b> Rocksmith 2014 — The Unofficially Official Chord Book, 156 аккордов. Все аппликатуры проверены по нотам. В книге было две ошибки: у Dsus2 нарисован DMaj7 (исправлено на xx0230), а A♯sus2 отсутствовал (добавлен, x13311).</p>`;
+    const q=$('#q'); q.value=S.q;
+    q.addEventListener('input',()=>{S.q=q.value;$('.search .clr').hidden=!S.q;renderGrid()});
+    q.addEventListener('keydown',e=>{if(e.key==='Enter')q.blur()});
+  }
+  $('.search .clr').hidden=!S.q;
+  $('#rootrow').innerHTML=`<span class="rowlbl">Тоника</span><button class="chip${S.root===null?' on':''}" data-act="root" data-v="">Все</button>`+
+    ROOTS.map((r,i)=>`<button class="chip${S.root===i?' on':''}" data-act="root" data-v="${i}">${r}${FLAT[r]?`<small>${FLAT[r]}</small>`:''}</button>`).join('');
+  $('#qualrow').innerHTML=`<span class="rowlbl">Тип</span><button class="chip${!S.qual?' on':''}" data-act="qual" data-v="">Все</button>`+
+    QUAL.map(([k,l])=>`<button class="chip${S.qual===k?' on':''}" data-act="qual" data-v="${k}">${l}</button>`).join('');
+  $('#posrow').innerHTML=`<span class="rowlbl">Ещё</span>`+[['all','Все позиции'],['open','Открытые'],['closed','Баррэ и на ладах']].map(([k,l])=>`<button class="chip${S.pos===k?' on':''}" data-act="pos" data-v="${k}">${l}</button>`).join('')+
+    `<button class="chip${S.fav?' on':''}" data-act="favf">★ Избранное${lib.favs.length?`<small>${lib.favs.length}</small>`:''}</button>`;
+  renderGrid();
+}
+function renderGrid(){
+  const g=$('#grid'); if(!g) return;
+  const list=filtered();
+  const any=S.q||S.root!==null||S.qual||S.pos!=='all'||S.fav;
+  $('#resinfo').innerHTML=`<span>${list.length} ${plural(list.length,'аккорд','аккорда','аккордов')}</span>${any?'<button data-act="reset">Сбросить фильтры</button>':''}`;
+  g.innerHTML=list.length?list.map(cardHTML).join(''):`<div class="empty" style="grid-column:1/-1">Ничего не нашлось.${S.fav&&!lib.favs.length?'<br>Отметьте аккорды звёздочкой, чтобы они появились здесь.':''}</div>`;
+}
+function plural(n,a,b,c){const m=n%10,h=n%100;return m===1&&h!==11?a:m>=2&&m<=4&&(h<12||h>14)?b:c}
+function refreshMarks(){
+  document.querySelectorAll('.card').forEach(el=>{
+    const id=el.dataset.id, i=S.board.indexOf(id);
+    el.classList.toggle('sel',i>=0); el.setAttribute('aria-pressed',i>=0); el.querySelector('.ord').textContent=i>=0?i+1:'';
+    const f=el.querySelector('.fav'), on=lib.favs.includes(id); f.classList.toggle('on',on); f.textContent=on?'★':'☆';
+  });
+}
+
+/* ---------- board / tray ---------- */
+function curSet(){return S.boardSet?lib.sets.find(s=>s.id===S.boardSet)||null:null}
+function boardChanged(){
+  const s=curSet();
+  if(s){s.chords=S.board.slice();s.updated=Date.now();touchLib()} else saveLocal();
+  refreshMarks();renderTray();updateNav();
+  if(S.stage.open) renderStage();
+  if(S.view==='sets') renderSets();
+}
+function toggleChord(id){const i=S.board.indexOf(id); if(i>=0) S.board.splice(i,1); else S.board.push(id); boardChanged()}
+function renderTray(){
+  const t=$('#tray'), s=curSet();
+  if(!S.board.length&&!s){t.hidden=true;return}
+  t.hidden=false;
+  t.innerHTML=`<div class="in"><div class="head">${s?`Подборка <b>«${esc(s.name)}»</b><span style="margin-left:auto"></span><button class="lnk" data-act="newboard">Новый выбор</button>`:`<b>Выбрано: ${S.board.length}</b><span style="margin-left:auto"></span>${S.board.length?'<button class="lnk" data-act="clearboard">Очистить</button>':''}`}</div>
+    <div class="chips">${S.board.map((id,i)=>`<span class="tchip">${esc(BY[id].name)}<button data-act="rm" data-i="${i}" aria-label="Убрать">×</button></span>`).join('')||'<span style="color:var(--mut);font-size:13px;padding:6px 0">Подборка пуста — нажимайте на аккорды в каталоге</span>'}</div>
+    <div class="acts"><button class="btn pri" data-act="stage" ${S.board.length?'':'disabled'}><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="3" y="4" width="8" height="7" rx="1.5"/><rect x="13" y="4" width="8" height="7" rx="1.5"/><rect x="3" y="13" width="8" height="7" rx="1.5"/><rect x="13" y="13" width="8" height="7" rx="1.5"/></svg>На экран</button>
+    ${s?'':`<button class="btn" data-act="saveboard" ${S.board.length?'':'disabled'}>Сохранить</button>`}</div></div>`;
+}
+function updateNav(){
+  document.querySelectorAll('#nav button').forEach(b=>b.classList.toggle('on',b.dataset.v===S.view));
+  $('#setcnt').textContent=lib.sets.length;
+}
+
+/* ---------- sets ---------- */
+function groups(){return [...new Set(lib.sets.map(s=>s.group.trim()).filter(Boolean))].sort((a,b)=>a.localeCompare(b,'ru'))}
+function renderSets(){
+  const m=$('#main'), gs=groups();
+  if(S.setGroup&&!gs.includes(S.setGroup)) S.setGroup=null;
+  let list=lib.sets.slice().sort((a,b)=>a.name.localeCompare(b.name,'ru'));
+  if(S.setGroup) list=list.filter(s=>s.group.trim()===S.setGroup);
+  const byG=new Map(); list.forEach(s=>{const g=s.group.trim()||'';if(!byG.has(g))byG.set(g,[]);byG.get(g).push(s)});
+  const order=[...byG.keys()].sort((a,b)=>a===''?1:b===''?-1:a.localeCompare(b,'ru'));
+  const card=s=>`<div class="scard${s.id===S.boardSet?' cur':''}">
+      <div class="t"><h3>${esc(s.name)}</h3><button class="kebab" data-act="setmenu" data-id="${s.id}" aria-label="Действия">⋯</button></div>
+      ${s.note?`<div class="note">${esc(s.note)}</div>`:''}
+      <div class="mini">${s.chords.map(id=>`<span>${esc(BY[id].name)}</span>`).join('')||'<span style="background:none;color:var(--dim);font-weight:500;padding:0">пусто</span>'}</div>
+      <div class="row2"><button class="btn pri sm" data-act="setshow" data-id="${s.id}" ${s.chords.length?'':'disabled'}>На экран</button><button class="btn sm" data-act="setedit" data-id="${s.id}">Изменить состав</button></div>
+    </div>`;
+  m.innerHTML=`<div class="sets-head"><h2>Подборки</h2><div style="display:flex;gap:8px"><button class="btn sm ghost" data-act="transfer">Перенос</button><button class="btn sm" data-act="newset">+ Новая</button></div></div>
+    ${gs.length?`<div class="row"><button class="chip${!S.setGroup?' on':''}" data-act="sgroup" data-v="">Все разделы</button>${gs.map(g=>`<button class="chip${S.setGroup===g?' on':''}" data-act="sgroup" data-v="${esc(g)}">${esc(g)}</button>`).join('')}</div>`:''}
+    ${lib.sets.length?order.map(g=>`${gs.length?`<div class="group-h">${esc(g||'Без раздела')}</div>`:''}<div class="setgrid">${byG.get(g).map(card).join('')}</div>`).join('')
+      :`<div class="empty">Подборок пока нет.<br><br>Выберите несколько аккордов в каталоге и нажмите «Сохранить», например под песню или упражнение.<br>Подборки можно разложить по разделам.</div>`}`;
+}
+function setForm(s,chords){
+  const isNew=!s, gs=groups();
+  modal(`<h3>${isNew?'Новая подборка':'Подборка'}</h3><p class="lead">${isNew&&chords&&chords.length?`${chords.length} ${plural(chords.length,'аккорд','аккорда','аккордов')}: ${chords.map(id=>esc(BY[id].name)).join(', ')}`:'Название и раздел помогут быстро найти её потом'}</p>
+    <form id="sf"><label class="field"><span>Название</span><input name="name" required maxlength="80" value="${esc(s?s.name:'')}" placeholder="Например: Nothing Else Matters"></label>
+    <label class="field"><span>Раздел (необязательно)</span><input name="group" list="glist" maxlength="40" value="${esc(s?s.group:'')}" placeholder="Песни, Разминка, Блюз…"><datalist id="glist">${gs.map(g=>`<option value="${esc(g)}">`).join('')}</datalist></label>
+    <label class="field"><span>Заметка (необязательно)</span><textarea name="note" maxlength="500" placeholder="Строй, каподастр, бой…">${esc(s?s.note:'')}</textarea></label>
+    <div class="acts"><button type="button" class="btn ghost" data-act="close">Отмена</button><button class="btn pri" type="submit">${isNew?'Сохранить':'Готово'}</button></div></form>`,
+  el=>{
+    const f=el.querySelector('#sf'); setTimeout(()=>f.name.focus(),50);
+    f.addEventListener('submit',e=>{e.preventDefault();
+      const name=f.name.value.trim()||'Без названия', group=f.group.value.trim(), note=f.note.value.trim();
+      if(isNew){const ns={id:uidGen(),name,group,note,chords:(chords||[]).slice(),updated:Date.now()};lib.sets.push(ns);
+        if(chords===S.board){S.boardSet=ns.id}
+        touchLib();closeModal();toast('Подборка сохранена');}
+      else{Object.assign(s,{name,group,note,updated:Date.now()});touchLib();closeModal()}
+      renderAll();
+    });
+  });
+}
+function setMenu(s){
+  modal(`<h3>${esc(s.name)}</h3><p class="lead">${s.chords.length} ${plural(s.chords.length,'аккорд','аккорда','аккордов')}${s.group?` · ${esc(s.group)}`:''}</p>
+    <div class="menu"><button class="btn" data-act="setrename" data-id="${s.id}">Переименовать, раздел, заметка</button>
+    <button class="btn" data-act="setdup" data-id="${s.id}">Сделать копию</button>
+    <button class="btn danger" data-act="setdel" data-id="${s.id}">Удалить подборку</button>
+    <button class="btn ghost" data-act="close">Закрыть</button></div>`);
+}
+function confirmBox(title,text,okLabel,fn,danger){
+  modal(`<h3>${title}</h3><p class="lead">${text}</p><div class="acts"><button class="btn ghost" data-act="close">Отмена</button><button class="btn ${danger?'danger':'pri'}" id="okb">${okLabel}</button></div>`,
+    el=>el.querySelector('#okb').addEventListener('click',()=>{closeModal();fn()}));
+}
+function loadSet(s,then){
+  const go=()=>{S.board=s.chords.slice();S.boardSet=s.id;saveLocal();then()};
+  if(!S.boardSet&&S.board.length&&S.board.join()!==s.chords.join())
+    confirmBox('Заменить текущий выбор?',`Сейчас выбрано ${S.board.length} ${plural(S.board.length,'аккорд','аккорда','аккордов')} без сохранения. Они уберутся с экрана.`,'Заменить',go);
+  else go();
+}
+
+/* ---------- transfer between devices ---------- */
+function exportCode(){
+  const json=JSON.stringify({app:'chordbook',v:1,favs:lib.favs,sets:lib.sets});
+  return 'AKKORDY1:'+btoa(unescape(encodeURIComponent(json)));
+}
+function transferBox(){
+  modal(`<h3>Перенос подборок</h3><p class="lead">Подборки и избранное упаковываются в текстовый код. Отправьте его себе (например в Telegram или заметки) и вставьте на другом устройстве: на телефоне, планшете или в веб-версии.</p>
+    <div class="acts" style="margin-bottom:18px"><button class="btn pri" data-act="export" ${lib.sets.length||lib.favs.length?'':'disabled'}>${NATIVE?'Отправить код':'Скопировать код'}</button></div>
+    <label class="field"><span>Вставить код с другого устройства</span><textarea id="imp" placeholder="AKKORDY1:…" spellcheck="false" autocapitalize="off"></textarea></label>
+    <div class="acts"><button class="btn ghost" data-act="close">Закрыть</button><button class="btn" id="impb">Загрузить</button></div>`,
+  el=>el.querySelector('#impb').addEventListener('click',()=>doImport(el.querySelector('#imp').value)));
+}
+async function doExport(){
+  const code=exportCode();
+  if(NATIVE){NATIVE.share(code);return}
+  try{await navigator.clipboard.writeText(code);toast('Код скопирован. Вставьте его на другом устройстве.')}
+  catch(e){const t=$('#imp');if(t){t.value=code;t.select()}toast('Скопируйте код из поля ниже')}
+}
+function doImport(raw){
+  const m=String(raw||'').match(/AKKORDY1:([A-Za-z0-9+/=]+)/);
+  if(!m){toast('Не похоже на код подборок');return}
+  let d;try{d=JSON.parse(decodeURIComponent(escape(atob(m[1]))))}catch(e){toast('Код повреждён, скопируйте его целиком');return}
+  const inc=sanitizeLib({sets:d.sets,favs:d.favs,updated:1});
+  let added=0,upd=0;
+  inc.sets.forEach(s=>{const i=lib.sets.findIndex(x=>x.id===s.id);
+    if(i<0){lib.sets.push(s);added++} else if(s.updated>lib.sets[i].updated){lib.sets[i]=s;upd++}});
+  inc.favs.forEach(id=>{if(!lib.favs.includes(id))lib.favs.push(id)});
+  const cs=curSet(); if(cs) S.board=cs.chords.slice();
+  touchLib();closeModal();renderAll();
+  toast(added||upd?`Добавлено подборок: ${added}${upd?`, обновлено: ${upd}`:''}`:'Новых подборок нет, всё уже на месте');
+}
+
+/* ---------- detail ---------- */
+function detail(c){
+  const inB=S.board.includes(c.id), fav=lib.favs.includes(c.id);
+  modal(`<h3>${esc(c.name)}${c.altName?` <span style="color:var(--mut);font-weight:600;font-size:16px">/ ${esc(c.altName)}</span>`:''}</h3>
+    <p class="lead">${QDESC[c.q]}</p>
+    <img src="c/${c.id}.webp" width="520" height="260" alt="">
+    ${c.fix?`<div class="fixnote">${esc(c.fix)}</div>`:''}
+    <dl class="kv"><dt>Ноты</dt><dd>${c.notes.join(' · ')}</dd>
+      <dt>Аппликатура</dt><dd class="mono">${esc(c.shape)}</dd>
+      <dt>Позиция</dt><dd>${c.var?(c.var==='Open'?'открытая':'баррэ')+', ':''}${c.open?'с открытыми струнами':`от ${c.pos}-го лада`}</dd></dl>
+    <div class="acts"><button class="btn${inB?'':' pri'}" data-act="dtoggle" data-id="${c.id}">${inB?'Убрать с экрана':'+ На экран'}</button>
+      <button class="btn" data-act="dfav" data-id="${c.id}">${fav?'★ В избранном':'☆ В избранное'}</button></div>
+    <div style="margin-top:16px;font-size:13px;color:var(--mut)">Добавить в подборки</div>
+    <div class="setpick">${lib.sets.length?lib.sets.slice().sort((a,b)=>a.name.localeCompare(b.name,'ru')).map(s=>`<label><input type="checkbox" data-set="${s.id}" ${s.chords.includes(c.id)?'checked':''}>${esc(s.name)}<small>${esc(s.group)}</small></label>`).join(''):'<span style="color:var(--dim);font-size:13px">Подборок пока нет</span>'}</div>
+    <div class="acts"><button class="btn ghost" data-act="dnewset" data-id="${c.id}">+ Новая подборка с этим аккордом</button><button class="btn" data-act="close">Готово</button></div>`,
+  el=>el.querySelectorAll('[data-set]').forEach(cb=>cb.addEventListener('change',()=>{
+    const s=lib.sets.find(x=>x.id===cb.dataset.set); if(!s) return;
+    if(cb.checked){if(!s.chords.includes(c.id))s.chords.push(c.id)} else s.chords=s.chords.filter(x=>x!==c.id);
+    s.updated=Date.now(); if(s.id===S.boardSet){S.board=s.chords.slice();refreshMarks()} touchLib(); renderTray(); if(S.view==='sets')renderSets();
+  })));
+}
+
+/* ---------- stage ---------- */
+let wake=null,hintT=null;
+function openStage(){S.stage.open=true;S.stage.edit=false;S.stage.ui=true;renderStage();
+  const h=$('#stage .hint'); if(h){clearTimeout(hintT);hintT=setTimeout(()=>h.style.opacity=0,2600)}}
+function closeStage(){S.stage.open=false;$('#stage').hidden=true;$('#stage').innerHTML='';
+  if(NATIVE){if(fsOn){fsOn=false;NATIVE.setFullscreen(false)} if(wake){NATIVE.keepScreenOn(false);wake=null}}
+  else{if(document.fullscreenElement)document.exitFullscreen().catch(()=>{});if(wake){wake.release().catch(()=>{});wake=null}}}
+function renderStage(){
+  const st=$('#stage'), s=curSet(), cols=S.stage.cols;
+  st.hidden=false; st.className='stage'+(S.stage.ui?'':' noui')+(S.stage.edit?' edit':'');
+  const colBtns=['auto',1,2,3,4,5,6].map(v=>`<button class="${cols==v?'on':''}" data-act="cols" data-v="${v}">${v==='auto'?'Авто':v}</button>`).join('');
+  st.innerHTML=`<div class="bar">
+      <button class="tbtn" data-act="stclose" aria-label="Назад"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M15 5l-7 7 7 7"/></svg></button>
+      <div class="ttl">${s?esc(s.name):'Выбранные аккорды'}</div>
+      <div class="seg" title="Сколько аккордов в ряд">${colBtns}</div>
+      <button class="tbtn${S.stage.notes?' on':''}" data-act="stnotes">Ноты</button>
+      <button class="tbtn${S.stage.edit?' on':''}" data-act="stedit">${S.stage.edit?'Готово':'Порядок'}</button>
+      <button class="tbtn${wake?' on':''}" data-act="stwake" title="Не гасить экран">☀ Не гасить</button>
+      <button class="tbtn" data-act="stfull" title="Во весь экран">⛶</button>
+    </div>
+    <div class="board" id="board" data-act="stui">${S.board.length?S.board.map((id,i)=>{const c=BY[id];return `<div class="tile">
+      <div class="lbl"><span class="n">${esc(c.name)}</span>${c.altName?`<span class="a">${esc(c.altName)}</span>`:''}${S.stage.notes?`<span class="nt">${c.notes.join(' ')}</span>`:''}</div>
+      <img src="c/${id}.webp" width="520" height="260" alt="${esc(c.name)}">
+      <div class="ed"><button data-act="mv" data-i="${i}" data-d="-1" aria-label="Левее" ${i?'':'disabled style="opacity:.3"'}>‹</button><button data-act="mv" data-i="${i}" data-d="1" aria-label="Правее" ${i<S.board.length-1?'':'disabled style="opacity:.3"'}>›</button><button class="x" data-act="rm" data-i="${i}" aria-label="Убрать">×</button></div></div>`}).join('')
+      :'<div class="empty-st">Здесь пусто.<br>Вернитесь в каталог и выберите аккорды.</div>'}</div>
+    ${S.stage.ui&&!S.stage.edit&&S.board.length?'<div class="hint">Нажмите на экран, чтобы скрыть панель</div>':''}`;
+  layoutBoard();
+}
+function layoutBoard(){
+  const b=$('#board'); if(!b||!S.board.length) return;
+  const n=S.board.length, gap=window.innerWidth<600?8:12, pad=window.innerWidth<600?8:12;
+  b.style.padding=pad+'px'; b.style.setProperty('--gap',gap+'px');
+  const W=b.clientWidth-pad*2, H=b.clientHeight-pad*2;
+  const lh=S.stage.notes?0.15:0.13, ratio=0.5+lh;   // tile height / width (+ borders)
+  let cols, w, scroll=false;
+  if(S.stage.cols==='auto'){
+    let best=0,bc=1;
+    for(let c=1;c<=n;c++){const r=Math.ceil(n/c);const wW=(W-(c-1)*gap)/c;const wH=((H-(r-1)*gap)/r-2)/ratio;const ww=Math.min(wW,wH);if(ww>best+0.5){best=ww;bc=c}}
+    cols=bc; w=Math.floor(best);
+    if(w<150){cols=Math.max(1,Math.floor((W+gap)/(150+gap)));w=Math.floor((W-(cols-1)*gap)/cols);scroll=true}
+  } else {
+    cols=Math.min(+S.stage.cols,n); w=Math.floor((W-(cols-1)*gap)/cols);
+    const rows=Math.ceil(n/cols); scroll=rows*(w*ratio+2)+(rows-1)*gap>H;
+  }
+  w=Math.min(w,1200);
+  b.style.gridTemplateColumns=`repeat(${cols}, ${w}px)`;
+  b.style.setProperty('--w',w+'px'); b.style.setProperty('--lh',lh);
+  b.classList.toggle('scroll',scroll);
+}
+async function toggleWake(){
+  if(NATIVE){ wake=wake?null:{native:true}; NATIVE.keepScreenOn(!!wake); if(wake) toast('Экран не будет гаснуть, пока открыт этот режим'); renderStage(); return }
+  if(wake){try{await wake.release()}catch(e){} wake=null; renderStage(); return}
+  try{ wake=await navigator.wakeLock.request('screen'); wake.addEventListener('release',()=>{wake=null;if(S.stage.open)renderStage()}); toast('Экран не будет гаснуть, пока открыт этот режим'); }
+  catch(e){ wake=null; toast('Браузер не разрешил держать экран включённым. Можно увеличить тайм-аут экрана в настройках телефона.'); }
+  renderStage();
+}
+async function toggleFull(){
+  if(NATIVE){ fsOn=!fsOn; NATIVE.setFullscreen(fsOn); setTimeout(layoutBoard,300); return }
+  try{ if(document.fullscreenElement) await document.exitFullscreen(); else await document.documentElement.requestFullscreen(); setTimeout(layoutBoard,250);}
+  catch(e){ toast('Полноэкранный режим недоступен здесь'); }
+}
+
+/* ---------- modal / toast ---------- */
+function modal(html,mount){const m=$('#modal');m.innerHTML=`<div class="sheet" role="dialog" aria-modal="true">${html}</div>`;m.hidden=false;mount&&mount(m)}
+function closeModal(){const m=$('#modal');m.hidden=true;m.innerHTML=''}
+let toastT=null;
+function toast(t){const el=$('#toast');el.textContent=t;el.hidden=false;clearTimeout(toastT);toastT=setTimeout(()=>el.hidden=true,2600)}
+
+/* ---------- events ---------- */
+document.addEventListener('click',e=>{
+  const m=$('#modal'); if(e.target===m){closeModal();return}
+  const a=e.target.closest('[data-act]'); if(!a) return;
+  const act=a.dataset.act, id=a.dataset.id, v=a.dataset.v;
+  const set=id?lib.sets.find(s=>s.id===id):null;
+  switch(act){
+    case 'view': S.view=v; renderMain(); window.scrollTo(0,0); break;
+    case 'toggle': toggleChord(id); break;
+    case 'info': detail(BY[id]); break;
+    case 'fav': case 'dfav': {const i=lib.favs.indexOf(id); i>=0?lib.favs.splice(i,1):lib.favs.push(id); touchLib(); refreshMarks();
+      if(S.fav) renderGrid(); if(act==='dfav') detail(BY[id]); if(S.view==='catalog') renderCatalogChipsOnly(); break;}
+    case 'dtoggle': toggleChord(id); detail(BY[id]); break;
+    case 'dnewset': closeModal(); setForm(null,[id]); break;
+    case 'clearq': S.q=''; $('#q').value=''; a.hidden=true; renderGrid(); $('#q').focus(); break;
+    case 'root': S.root=v===''?null:+v; renderCatalog(); break;
+    case 'qual': S.qual=v||null; renderCatalog(); break;
+    case 'pos': S.pos=v; renderCatalog(); break;
+    case 'favf': S.fav=!S.fav; renderCatalog(); break;
+    case 'reset': Object.assign(S,{q:'',root:null,qual:null,pos:'all',fav:false}); $('#q').value=''; renderCatalog(); break;
+    case 'rm': S.board.splice(+a.dataset.i,1); boardChanged(); break;
+    case 'mv': {const i=+a.dataset.i,j=i+ +a.dataset.d; if(j<0||j>=S.board.length)break; [S.board[i],S.board[j]]=[S.board[j],S.board[i]]; boardChanged(); break;}
+    case 'clearboard': confirmBox('Очистить выбор?','Аккорды уберутся с экрана. Сохранённые подборки не изменятся.','Очистить',()=>{S.board=[];boardChanged()}); break;
+    case 'newboard': S.board=[];S.boardSet=null;saveLocal();renderAll();toast('Начат новый выбор. Подборка сохранена.'); break;
+    case 'saveboard': setForm(null,S.board); break;
+    case 'stage': openStage(); break;
+    case 'stclose': closeStage(); break;
+    case 'stui': if(e.target.closest('.ed'))break; if(S.stage.edit)break; S.stage.ui=!S.stage.ui; renderStage(); break;
+    case 'cols': S.stage.cols=v==='auto'?'auto':+v; saveLocal(); renderStage(); break;
+    case 'stnotes': S.stage.notes=!S.stage.notes; saveLocal(); renderStage(); break;
+    case 'stedit': S.stage.edit=!S.stage.edit; renderStage(); break;
+    case 'stwake': toggleWake(); break;
+    case 'stfull': toggleFull(); break;
+    case 'newset': setForm(null,[]); break;
+    case 'sgroup': S.setGroup=v||null; renderSets(); break;
+    case 'setmenu': if(set) setMenu(set); break;
+    case 'setrename': if(set){closeModal();setForm(set)} break;
+    case 'setdup': if(set){const c={...set,id:uidGen(),name:set.name+' (копия)',chords:set.chords.slice(),updated:Date.now()};lib.sets.push(c);touchLib();closeModal();renderAll();toast('Копия создана')} break;
+    case 'setdel': if(set){closeModal();confirmBox('Удалить подборку?',`«${esc(set.name)}» удалится на всех устройствах. Аккорды в каталоге останутся.`,'Удалить',()=>{
+      lib.sets=lib.sets.filter(s=>s.id!==set.id); if(S.boardSet===set.id) S.boardSet=null; touchLib(); renderAll();},true)} break;
+    case 'setshow': if(set) loadSet(set,()=>{renderAll();openStage()}); break;
+    case 'setedit': if(set) loadSet(set,()=>{S.view='catalog';renderAll();window.scrollTo(0,0);toast('Нажимайте на аккорды, чтобы добавить или убрать')}); break;
+    case 'close': closeModal(); break;
+    case 'transfer': transferBox(); break;
+    case 'export': doExport(); break;
+  }
+});
+document.addEventListener('keydown',e=>{
+  if(e.key==='Escape'){ if(!$('#modal').hidden) closeModal(); else if(S.stage.open) closeStage(); }
+  if(e.key==='/'&&S.view==='catalog'&&document.activeElement.tagName!=='INPUT'&&document.activeElement.tagName!=='TEXTAREA'){e.preventDefault();$('#q')&&$('#q').focus()}
+});
+let rT=null; window.addEventListener('resize',()=>{clearTimeout(rT);rT=setTimeout(()=>{if(S.stage.open)layoutBoard()},80)});
+document.addEventListener('fullscreenchange',()=>setTimeout(layoutBoard,150));
+
+function renderCatalogChipsOnly(){ const b=document.querySelector('[data-act=favf]'); if(b) b.innerHTML=`★ Избранное${lib.favs.length?`<small>${lib.favs.length}</small>`:''}`; }
+function renderMain(){ updateNav(); if(S.view==='catalog'){ if(!$('#main .sbar')) $('#main').innerHTML=''; renderCatalog(); } else renderSets(); }
+function renderAll(){ renderMain(); renderTray(); if(S.stage.open) renderStage(); }
+
+loadLocal(); setSync('local'); if(NATIVE) $('#sync').hidden=true; renderAll();
+window.appBack=()=>{
+  if(!$('#modal').hidden){closeModal();return true}
+  if(S.stage.open){closeStage();return true}
+  if(S.view!=='catalog'){S.view='catalog';renderMain();window.scrollTo(0,0);return true}
+  return false;
+};
+setTimeout(initCloud,0);
+</script>
+</body>
+</html>
